@@ -289,10 +289,27 @@
         try{
           transition=document.startViewTransition(()=>applyTheme(dark));
           await transition.ready;
-          // A broad elliptical wave starts at the top and rolls down the viewport.
+          // Sample a gently irregular edge; fresh phases make every wave unique.
+          // Fixed polygon vertices let the browser interpolate without sharp jumps.
+          const phaseA=Math.random()*Math.PI*2;
+          const phaseB=Math.random()*Math.PI*2;
+          const amplitude=4+Math.random()*2;
+          const frequency=1.1+Math.random()*.6;
+          const drift=(Math.random()-.5)*1.2;
+          const waveFrames=Array.from({length:17},(_,frame)=>{
+            const progress=frame/16;
+            const edge=Array.from({length:49},(_,point)=>{
+              const x=1-point/48;
+              const ripple=amplitude*Math.sin(x*Math.PI*2*frequency+phaseA+progress*drift)
+                +1.5*Math.sin(x*Math.PI*4+phaseB-progress*.8);
+              const y=-12+124*progress+ripple;
+              return (x*100).toFixed(3)+'% '+y.toFixed(3)+'%';
+            });
+            return {offset:progress,clipPath:'polygon(0% -25%,100% -25%,'+edge.join(',')+')'};
+          });
           const reveal=themeRoot.animate(
-            {clipPath:['ellipse(75% 0% at 50% 0%)','ellipse(75% 150% at 50% 0%)']},
-            {duration:950,easing:'cubic-bezier(.22,.61,.36,1)',pseudoElement:'::view-transition-new(root)'}
+            waveFrames,
+            {duration:1050+Math.random()*150,easing:'cubic-bezier(.22,.61,.36,1)',pseudoElement:'::view-transition-new(root)'}
           );
           await reveal.finished;
           await transition.finished;
