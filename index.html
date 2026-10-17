@@ -203,6 +203,14 @@
     html.theme-switching::view-transition-old(root){z-index:1}
     html.theme-switching::view-transition-new(root){z-index:2}
     html.theme-switching::view-transition-group(root){animation-duration:0s}
+
+    .stats-heading{margin:0 0 30px}
+    .stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .stat{display:flex;flex-direction:column;padding:32px 30px 35px 0;min-width:0}
+    .stat+.stat{border-left:1px solid var(--line);padding-left:30px}
+    .stat dt{order:2;margin-top:13px;font-size:14px;font-weight:700;color:var(--muted)}
+    .stat dd{margin:0;font-size:clamp(64px,8vw,112px);line-height:1.1;font-weight:450;letter-spacing:-.07em;color:var(--sage);font-variant-numeric:tabular-nums}
+    @media(max-width:760px){.stat{padding:25px 12px 27px 0}.stat+.stat{padding-left:16px}.stat dd{font-size:clamp(40px,11vw,72px)}.stat dt{font-size:clamp(10px,2.8vw,14px)}.stats-heading{margin-bottom:24px}}
   </style>
 </head>
 <body id="top">
@@ -246,8 +254,16 @@
         </div></div>
       </div>
     </section>
+    <section class="stats section shell" id="numbers" aria-labelledby="numbers-heading">
+      <h2 class="eyebrow stats-heading" id="numbers-heading">02 / ЦИФРЫ</h2>
+      <dl class="stats-grid">
+        <div class="stat"><dt>Партнёров</dt><dd aria-label="07"><span data-count="7" aria-hidden="true">07</span></dd></div>
+        <div class="stat"><dt>Проектов</dt><dd aria-label="16"><span data-count="16" aria-hidden="true">16</span></dd></div>
+        <div class="stat"><dt>Монтажёров</dt><dd aria-label="05"><span data-count="5" aria-hidden="true">05</span></dd></div>
+      </dl>
+    </section>
     <section class="services shell" id="services" aria-labelledby="services-heading">
-      <div class="services-intro"><span class="eyebrow">02 / ЭКСПЕРТИЗА</span><h2 id="services-heading">От идеи<br>до финального<br>результата<span class="period">.</span></h2><p>Подключаемся на любом этапе. Выстраиваем историю, делаем изображение выразительнее и бережно относимся к каждой детали.</p></div>
+      <div class="services-intro"><span class="eyebrow">03 / ЭКСПЕРТИЗА</span><h2 id="services-heading">От идеи<br>до финального<br>результата<span class="period">.</span></h2><p>Подключаемся на любом этапе. Выстраиваем историю, делаем изображение выразительнее и бережно относимся к каждой детали.</p></div>
       <div class="service-list">
         <details class="service"><summary><span class="no">01</span><span class="name">Видеомонтаж</span><span class="plus" aria-hidden="true">+</span></summary><p class="service-desc">Монтаж рекламы, контента для соцсетей, интервью и брендовых видео. Ритм, драматургия, структура и чистый финальный результат.</p></details>
         <details class="service"><summary><span class="no">02</span><span class="name">Motion-дизайн</span><span class="plus" aria-hidden="true">+</span></summary><p class="service-desc">Титры, типографическая анимация, переходы, графика и визуальные акценты, которые органично дополняют ролик.</p></details>
@@ -256,10 +272,10 @@
       </div>
     </section>
     <section class="workflow shell" id="process" aria-labelledby="process-heading">
-      <div class="workflow-head"><div><span class="eyebrow">03 / ПРОЦЕСС</span><h2 id="process-heading">Просто. Чётко. По делу<span class="period">.</span></h2></div><p>Понятная коммуникация и внимание к деталям на каждом этапе.</p></div>
+      <div class="workflow-head"><div><span class="eyebrow">04 / ПРОЦЕСС</span><h2 id="process-heading">Просто. Чётко. По делу<span class="period">.</span></h2></div><p>Понятная коммуникация и внимание к деталям на каждом этапе.</p></div>
       <div class="workflow-grid"><div class="step"><span class="step-number">01 / БРИФ</span><h3>Знакомимся с задачей</h3><p>Обсуждаем формат, референсы, исходники и результат, которого вы хотите достичь.</p></div><div class="step"><span class="step-number">02 / ПРОИЗВОДСТВО</span><h3>Собираем историю</h3><p>Работаем с монтажом, графикой, цветом и звуком. Согласовываем ключевые решения.</p></div><div class="step"><span class="step-number">03 / ФИНАЛ</span><h3>Доводим до идеала</h3><p>Учитываем обратную связь и подготавливаем ролик для нужных площадок.</p></div></div>
     </section>
-    <section class="contact" id="contact" aria-labelledby="contact-heading"><div class="contact-grid shell"><div class="contact-copy"><span class="eyebrow">04 / НАЧНЁМ РАЗГОВОР</span><h2 id="contact-heading">Есть идея?<br>Давайте<br><span class="period">воплотим.</span></h2><p>Расскажите, что хотите создать. Поможем превратить идею или готовые исходники в законченное видео.</p></div><form class="contact-form" id="brief-form"><div class="form-caption"><strong>Короткий бриф</strong><span>EDIT EFFECTS / 2026</span></div><label class="form-field"><span>КАК К ВАМ ОБРАЩАТЬСЯ</span><input name="name" type="text" placeholder="Ваше имя" maxlength="100"></label><label class="form-field"><span>КАК С ВАМИ СВЯЗАТЬСЯ</span><input name="contact" type="text" placeholder="Telegram или email" maxlength="160" required></label><label class="form-field"><span>ПАРА СЛОВ О ПРОЕКТЕ</span><textarea name="task" placeholder="Например: нужен монтаж ролика для бренда..." maxlength="2000" required></textarea></label><button class="btn" type="submit">Скопировать заявку <span class="arrow" aria-hidden="true">↗</span></button><p class="form-result" id="form-result" role="status" aria-live="polite"></p><p class="form-note">Это рабочий макет формы: заявка копируется в буфер обмена. Отправку на почту или в Telegram подключим после добавления контактов студии.</p></form></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-heading"><div class="contact-grid shell"><div class="contact-copy"><span class="eyebrow">05 / НАЧНЁМ РАЗГОВОР</span><h2 id="contact-heading">Есть идея?<br>Давайте<br><span class="period">воплотим.</span></h2><p>Расскажите, что хотите создать. Поможем превратить идею или готовые исходники в законченное видео.</p></div><form class="contact-form" id="brief-form"><div class="form-caption"><strong>Короткий бриф</strong><span>EDIT EFFECTS / 2026</span></div><label class="form-field"><span>КАК К ВАМ ОБРАЩАТЬСЯ</span><input name="name" type="text" placeholder="Ваше имя" maxlength="100"></label><label class="form-field"><span>КАК С ВАМИ СВЯЗАТЬСЯ</span><input name="contact" type="text" placeholder="Telegram или email" maxlength="160" required></label><label class="form-field"><span>ПАРА СЛОВ О ПРОЕКТЕ</span><textarea name="task" placeholder="Например: нужен монтаж ролика для бренда..." maxlength="2000" required></textarea></label><button class="btn" type="submit">Скопировать заявку <span class="arrow" aria-hidden="true">↗</span></button><p class="form-result" id="form-result" role="status" aria-live="polite"></p><p class="form-note">Это рабочий макет формы: заявка копируется в буфер обмена. Отправку на почту или в Telegram подключим после добавления контактов студии.</p></form></div></section>
   </main>
   <footer class="site-footer shell"><a class="footer-logo" href="#top">edit effects.</a><span class="footer-small">© 2026 EDIT EFFECTS · АГЕНСТВО ВИДЕОМОНТАЖА</span><a class="footer-top" href="#top">Наверх ↑</a></footer>
   <dialog id="project-dialog" class="modal" aria-labelledby="dialog-title"><div class="modal-inner"><div class="modal-head"><strong>EDIT EFFECTS / ПРОЕКТ</strong><button type="button" class="modal-close" data-close-modal aria-label="Закрыть окно">×</button></div><div class="modal-video"><iframe id="dialog-video" title="Видео проекта Edit Effects" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><h3 id="dialog-title">Название проекта</h3><p id="dialog-copy">Демонстрационный проект.</p></div></dialog>
@@ -321,6 +337,47 @@
           themeBusy=false;
         }
       });
+      const numbersSection=document.getElementById('numbers');
+      const counters=Array.from(numbersSection.querySelectorAll('[data-count]'));
+      const counterMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+      let counterFrame=0,countersStarted=false;
+      const showFinalCounts=()=>counters.forEach(counter=>{
+        counter.textContent=counter.dataset.count.padStart(2,'0');
+      });
+      function animateCounters(){
+        if(countersStarted)return;
+        countersStarted=true;
+        if(counterMotion.matches){showFinalCounts();return;}
+        const start=performance.now();
+        function count(time){
+          const progress=Math.min((time-start)/1400,1);
+          const eased=1-Math.pow(1-progress,3);
+          counters.forEach(counter=>{
+            counter.textContent=String(Math.floor(Number(counter.dataset.count)*eased)).padStart(2,'0');
+          });
+          if(progress<1)counterFrame=requestAnimationFrame(count);
+          else{counterFrame=0;showFinalCounts();}
+        }
+        counterFrame=requestAnimationFrame(count);
+      }
+      if('IntersectionObserver' in window&&!counterMotion.matches){
+        counters.forEach(counter=>counter.textContent='00');
+        const counterObserver=new IntersectionObserver(entries=>{
+          if(entries.some(entry=>entry.isIntersecting)){
+            animateCounters();
+            counterObserver.disconnect();
+          }
+        },{threshold:.35});
+        counterObserver.observe(numbersSection);
+        counterMotion.addEventListener('change',()=>{
+          if(counterMotion.matches){
+            cancelAnimationFrame(counterFrame);
+            counterObserver.disconnect();
+            countersStarted=true;
+            showFinalCounts();
+          }
+        });
+      }
       const header=document.querySelector('.site-header');
       const menu=document.querySelector('.menu-toggle');
       menu.addEventListener('click',()=>{const opened=header.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?'Закрыть меню':'Открыть меню');});
