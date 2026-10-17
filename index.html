@@ -122,18 +122,13 @@
     .carousel-viewport .projects{display:flex;gap:19px}
     .carousel-viewport .project{flex:0 0 calc((100% - 38px)/3)}
     .carousel-viewport .project-art:focus-visible{outline-offset:-4px}
-    .carousel-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:27px}
-    .carousel-actions{display:flex;width:100%;justify-content:space-between;align-items:center;gap:10px}
-    .carousel-arrow{height:44px;border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .2s,border-color .2s}
-    .carousel-arrow{width:46px;font-size:23px}
-    .carousel-arrow:hover{background:var(--soft);border-color:var(--sage)}
     .poster-four{background:linear-gradient(135deg,#bdcbc4,#324d46)}
     .poster-four:before{content:"";position:absolute;inset:16% 13%;border:24px solid #dbe6d7;border-radius:50%;transform:rotate(-35deg) scaleY(.62);box-shadow:14px 28px 30px #142d3655,inset 10px 12px 22px #142d3644}
     .poster-four:after{content:"";position:absolute;inset:9% 20%;border:2px solid #eff8df88;border-radius:50%;transform:rotate(25deg) scaleY(.75)}
     .poster-five{background:linear-gradient(145deg,#303c43,#111c24)}
     .poster-five:before{content:"";position:absolute;inset:19% 16%;background:repeating-linear-gradient(90deg,#b8c9ce 0 5%,transparent 5% 12%);clip-path:polygon(0 40%,12% 35%,24% 15%,36% 29%,48% 0,60% 22%,72% 12%,84% 35%,100% 42%,100% 58%,84% 65%,72% 88%,60% 78%,48% 100%,36% 71%,24% 85%,12% 65%,0 60%);filter:drop-shadow(0 12px 15px #0008)}
     @media(max-width:1050px){.carousel-viewport .project{flex-basis:calc((100% - 19px)/2)}}
-    @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}.carousel-controls{flex-wrap:wrap}}
+    @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}}
   </style>
 </head>
 <body id="top">
@@ -169,12 +164,6 @@
         <article class="project"><button class="project-art poster-four" type="button" data-project="3" aria-label="Подробнее о концепте Light Waves"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 04</span></button><div class="project-meta"><div><h3>Light Waves</h3><p>Motion-дизайн · Анимация</p></div><span>04 / 05</span></div></article>
         <article class="project"><button class="project-art poster-five" type="button" data-project="4" aria-label="Подробнее о концепте Echo Studio"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 05</span></button><div class="project-meta"><div><h3>Echo Studio</h3><p>Звук · Саунд-дизайн</p></div><span>05 / 05</span></div></article>
         </div></div>
-        <div class="carousel-controls">
-          <div class="carousel-actions">
-            <button class="carousel-arrow" type="button" data-direction="-1" aria-controls="portfolio-viewport" aria-label="Предыдущий проект">←</button>
-            <button class="carousel-arrow" type="button" data-direction="1" aria-controls="portfolio-viewport" aria-label="Следующий проект">→</button>
-          </div>
-        </div>
       </div>
     </section>
     <section class="services shell" id="services" aria-labelledby="services-heading">
@@ -296,9 +285,6 @@
         if(motion.matches){position=target;render();return;}
         tween={from:position,to:target,start:performance.now()};
       }
-      carousel.querySelectorAll('[data-direction]').forEach(button=>{
-        button.addEventListener('click',()=>move(Number(button.dataset.direction)));
-      });
       viewport.addEventListener('keydown',event=>{
         if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
           event.preventDefault();move(event.key==='ArrowLeft'?-1:1);
