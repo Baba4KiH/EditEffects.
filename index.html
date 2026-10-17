@@ -259,9 +259,11 @@
       track.append(...cloneSet());
       const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
       let cycle=0,step=0,position=0,hovered=false,paused=motion.matches;
-      let dragging=null,suppressClick=false,tween=null,previousTime=0,visible=true;
+      let dragging=null,suppressClick=false,tween=null,previousTime=0,visible=true,speed=0;
       function render(){
-        if(cycle)viewport.scrollLeft=cycle+((position%cycle)+cycle)%cycle;
+        if(!cycle)return;
+        const offset=cycle+((position%cycle)+cycle)%cycle;
+        track.style.transform='translate3d('+(-offset)+'px,0,0)';
       }
       function measure(){
         const oldStep=step;
@@ -273,14 +275,20 @@
       }
       measure();
       new ResizeObserver(measure).observe(viewport);
-      new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;}).observe(viewport);
+      new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;previousTime=0;speed=0;}).observe(viewport);
+      document.addEventListener('visibilitychange',()=>{previousTime=0;speed=0;});
       motion.addEventListener('change',()=>{paused=motion.matches;tween=null;});
       viewport.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')hovered=true;});
       viewport.addEventListener('pointerleave',()=>{hovered=false;});
-      viewport.addEventListener('focusin',()=>{
-        // Native keyboard focus may scroll an off-screen original into view.
-        position=viewport.scrollLeft-cycle;
-        tween=null;
+      viewport.addEventListener('focusin',event=>{
+        // Focus can cause native scrolling; keep transform as the sole position source.
+        viewport.scrollLeft=0;
+        if(!event.target.matches(':focus-visible'))return;
+        const index=originals.findIndex(card=>card.contains(event.target));
+        if(index<0)return;
+        position=index*step;
+        tween=null;speed=0;
+        render();
       });
       function move(direction){
         const target=position+direction*step;
@@ -294,7 +302,7 @@
       });
       viewport.addEventListener('pointerdown',event=>{
         if(!event.isPrimary||event.button!==0)return;
-        tween=null;suppressClick=false;
+        tween=null;suppressClick=false;speed=0;
         dragging={id:event.pointerId,x:event.clientX,y:event.clientY,start:position,moved:false};
       });
       viewport.addEventListener('pointermove',event=>{
@@ -331,16 +339,20 @@
         previousTime=time;
         if(!document.hidden&&visible&&!dragging){
           if(tween){
+            speed=0;
             const progress=Math.min((time-tween.start)/450,1);
             const eased=1-Math.pow(1-progress,3);
             position=tween.from+(tween.to-tween.from)*eased;
             if(progress===1)tween=null;
             render();
           }else if(!paused&&!hovered&&!dialog.open&&!carousel.querySelector(':focus-visible')){
-            position+=dt*0.018;
+            // Ease back into the same 18px/s cruise speed after interaction.
+            const decay=Math.exp(-dt/220);
+            position+=0.018*dt+(speed-0.018)*220*(1-decay);
+            speed=0.018+(speed-0.018)*decay;
             render();
-          }
-        }
+          }else{speed=0;}
+        }else{speed=0;}
         requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);

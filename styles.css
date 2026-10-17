@@ -106,7 +106,7 @@
 
     .carousel-viewport{overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
     .carousel-viewport.is-dragging,.carousel-viewport.is-dragging button{cursor:grabbing}
-    .carousel-viewport .projects{display:flex;gap:19px}
+    .carousel-viewport .projects{display:flex;gap:19px;will-change:transform}
     .carousel-viewport .project{flex:0 0 calc((100% - 38px)/3)}
     .carousel-viewport .project-art:focus-visible{outline-offset:-4px}
     .poster-four{background:linear-gradient(135deg,#bdcbc4,#324d46)}
