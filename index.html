@@ -87,7 +87,7 @@
     .service-list{border-top:1px solid var(--line)}.service{border-bottom:1px solid var(--line)}
     .service summary{min-height:91px;list-style:none;display:grid;grid-template-columns:42px 1fr 27px;align-items:center;gap:15px;cursor:pointer}.service summary::-webkit-details-marker{display:none}
     .service summary .no{color:var(--sage);font-size:11px;font-weight:800}.service summary .name{font-size:clamp(17px,1.75vw,23px);font-weight:550;letter-spacing:-.04em}
-    .service summary .plus{font-size:22px;font-weight:400;transition:transform .25s}.service[open] summary .plus{transform:rotate(45deg)}
+    .service summary .plus{font-size:22px;font-weight:400;transition:transform .25s}.service[open] summary:not([aria-expanded="false"]) .plus{transform:rotate(45deg)}
     .service .service-desc{padding:0 47px 25px 57px;max-width:500px;color:var(--muted);font-size:13px;line-height:1.8;margin:0}
     .workflow{padding-top:132px;padding-bottom:128px}
     .workflow-head{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:41px}
@@ -173,6 +173,49 @@
       const menu=document.querySelector('.menu-toggle');
       menu.addEventListener('click',()=>{const opened=header.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?'Закрыть меню':'Открыть меню');});
       document.querySelectorAll('#site-nav a').forEach(a=>a.addEventListener('click',()=>{header.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Открыть меню');}));
+      // Keep details open until the closing animation finishes.
+      const services=Array.from(document.querySelectorAll('.service')).map(element=>({
+        element,summary:element.querySelector('summary'),expanded:element.open,animation:null
+      }));
+      function setService(state,expanded){
+        const {element,summary}=state;
+        const startHeight=element.getBoundingClientRect().height;
+        if(state.animation){state.animation.cancel();state.animation=null;}
+        state.expanded=expanded;
+        summary.setAttribute('aria-expanded',String(expanded));
+        element.open=true;
+        element.style.height='';
+        const endHeight=expanded?element.getBoundingClientRect().height:
+          summary.getBoundingClientRect().height+parseFloat(getComputedStyle(element).borderBottomWidth);
+        const finish=()=>{
+          element.open=state.expanded;
+          element.style.height='';
+          element.style.overflow='';
+          state.animation=null;
+        };
+        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!element.animate){
+          finish();
+          return;
+        }
+        element.style.overflow='hidden';
+        const animation=element.animate(
+          [{height:startHeight+'px'},{height:endHeight+'px'}],
+          {duration:280,easing:'cubic-bezier(0.4, 0, 0.2, 1)'}
+        );
+        state.animation=animation;
+        animation.onfinish=finish;
+      }
+      services.forEach(state=>{
+        state.summary.setAttribute('aria-expanded',String(state.expanded));
+        state.summary.addEventListener('click',event=>{
+          event.preventDefault();
+          const expanded=!state.expanded;
+          if(expanded)services.forEach(other=>{
+            if(other!==state&&other.expanded)setService(other,false);
+          });
+          setService(state,expanded);
+        });
+      });
       const projects=[
         {name:'Form in Motion',poster:'poster-one',text:'Бренд-фильм · Монтаж. Демонстрационный визуальный концепт. Здесь появится реальный ролик студии с описанием задачи, решения и результата.'},
         {name:'Silent Geometry',poster:'poster-two',text:'Имиджевое видео · Цвет. Демонстрационный визуальный концепт. Заменим на ваш кейс с видеоплеером, кадрами и краткой историей проекта.'},
