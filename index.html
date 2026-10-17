@@ -205,12 +205,13 @@
     html.theme-switching::view-transition-group(root){animation-duration:0s}
 
     .stats-heading{margin:0 0 30px}
+    .stats-heading h2{font-size:clamp(40px,4.6vw,66px);line-height:1.11;letter-spacing:-.073em;font-weight:550;margin:13px 0 0}
     .stats-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
     .stat{display:flex;flex-direction:column;padding:32px 30px 35px 0;min-width:0}
-    .stat+.stat{border-left:1px solid var(--line);padding-left:30px}
-    .stat dt{order:2;margin-top:13px;font-size:14px;font-weight:700;color:var(--muted)}
-    .stat dd{margin:0;font-size:clamp(64px,8vw,112px);line-height:1.1;font-weight:450;letter-spacing:-.07em;color:var(--sage);font-variant-numeric:tabular-nums}
-    @media(max-width:760px){.stat{padding:25px 12px 27px 0}.stat+.stat{padding-left:16px}.stat dd{font-size:clamp(40px,11vw,72px)}.stat dt{font-size:clamp(10px,2.8vw,14px)}.stats-heading{margin-bottom:24px}}
+    .stat+.stat{padding-left:30px}
+    .stat dt{margin:0 0 15px;font-size:18px;font-weight:700;color:var(--muted)}
+    .stat dd{margin:0;font-size:clamp(56px,7vw,96px);line-height:1.1;font-weight:450;letter-spacing:-.07em;color:var(--sage);font-variant-numeric:tabular-nums}
+    @media(max-width:760px){.stat{padding:25px 12px 27px 0}.stat+.stat{padding-left:16px}.stat dd{font-size:clamp(36px,9.5vw,64px)}.stat dt{font-size:clamp(12px,3.2vw,16px)}.stats-heading{margin-bottom:24px}}
   </style>
 </head>
 <body id="top">
@@ -255,7 +256,7 @@
       </div>
     </section>
     <section class="stats section shell" id="numbers" aria-labelledby="numbers-heading">
-      <h2 class="eyebrow stats-heading" id="numbers-heading">02 / ЦИФРЫ</h2>
+      <div class="stats-heading"><span class="eyebrow">02 / ЦИФРЫ</span><h2 id="numbers-heading">Наши достижения<span class="period">.</span></h2></div>
       <dl class="stats-grid">
         <div class="stat"><dt>Партнёров</dt><dd aria-label="07"><span data-count="7" aria-hidden="true">07</span></dd></div>
         <div class="stat"><dt>Проектов</dt><dd aria-label="16"><span data-count="16" aria-hidden="true">16</span></dd></div>
@@ -351,9 +352,8 @@
         const start=performance.now();
         function count(time){
           const progress=Math.min((time-start)/1400,1);
-          const eased=1-Math.pow(1-progress,3);
           counters.forEach(counter=>{
-            counter.textContent=String(Math.floor(Number(counter.dataset.count)*eased)).padStart(2,'0');
+            counter.textContent=String(Math.floor(Number(counter.dataset.count)*progress)).padStart(2,'0');
           });
           if(progress<1)counterFrame=requestAnimationFrame(count);
           else{counterFrame=0;showFinalCounts();}
