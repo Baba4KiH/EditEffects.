@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#fbfcfa">
+  <script>
+    try {
+      if(localStorage.getItem('edit-effects-theme')==='dark'){
+        document.documentElement.dataset.theme='dark';
+        document.querySelector('meta[name="theme-color"]').content='#111113';
+        document.querySelector('meta[name="color-scheme"]').content='dark';
+      }
+    } catch(error) {}
+  </script>
   <meta name="description" content="Edit Effects — студия видеомонтажа и постпродакшна. Видеомонтаж, motion-дизайн, цветокоррекция и звук.">
   <title>Edit Effects — каждый кадр имеет значение</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -128,12 +137,84 @@
     .poster-five:before{content:"";position:absolute;inset:19% 16%;background:repeating-linear-gradient(90deg,#b8c9ce 0 5%,transparent 5% 12%);clip-path:polygon(0 40%,12% 35%,24% 15%,36% 29%,48% 0,60% 22%,72% 12%,84% 35%,100% 42%,100% 58%,84% 65%,72% 88%,60% 78%,48% 100%,36% 71%,24% 85%,12% 65%,0 60%);filter:drop-shadow(0 12px 15px #0008)}
     @media(max-width:1050px){.carousel-viewport .project{flex-basis:calc((100% - 19px)/2)}}
     @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}}
+
+    /* Theme palette only: existing layout, spacing and artwork geometry stay intact. */
+    html[data-theme="dark"]{color-scheme:dark;--paper:#111113;--white:#242426;--ink:#eceeeb;--muted:#a6a7a8;--line:#39393d;--sage:#9db5a2;--sage-deep:#b3c8b7;--soft:#29292c}
+    html[data-theme="dark"] .site-header{background:rgba(17,17,19,.94)}
+    html[data-theme="dark"] .hero-desc,
+    html[data-theme="dark"] .contact-copy>p{color:#b4b5b6}
+    html[data-theme="dark"] .status-dot{background:#a3bda9;box-shadow:0 0 0 4px #29362e}
+    html[data-theme="dark"] .btn{background:#9db5a2;border-color:#9db5a2;color:#111713}
+    html[data-theme="dark"] .btn:hover{background:#b8cebd;border-color:#b8cebd}
+    html[data-theme="dark"] .hero-art{background:#242426}
+    html[data-theme="dark"] .hero-art::before{background:radial-gradient(circle at 75% 11%,#404442,transparent 40%),linear-gradient(145deg,#29292c,#171719)}
+    html[data-theme="dark"] .hero-art::after{background:linear-gradient(transparent,rgba(5,7,6,.5))}
+    html[data-theme="dark"] .hero-orb{background:radial-gradient(circle at 26% 19%,#e5eae5 0%,#adb8ae 11%,#65786a 27%,#303d34 43%,#151b17 57%,#090c0a 68%,#6b7d70 85%,#222b25 98%);box-shadow:28px 39px 69px #0008}
+    html[data-theme="dark"] .hero-orb::after{border-top-color:#dfeae1b3}
+    html[data-theme="dark"] .hero-ring{border-color:#b9cbb9a8}
+    html[data-theme="dark"] .art-heading{color:#c8d1cb}
+    html[data-theme="dark"] .art-footer{color:#eef0ed}
+    html[data-theme="dark"] .art-footer small{color:#c5cdc7}
+    html[data-theme="dark"] .poster-one{background:linear-gradient(140deg,#343c37,#131715)}
+    html[data-theme="dark"] .poster-one:before{background:radial-gradient(circle at 25% 20%,#e8ede6,#bec9bc 13%,#7e8981 33%,#3d4840 51%,#151a17 77%)}
+    html[data-theme="dark"] .poster-two{background:linear-gradient(135deg,#303433,#191b1a 80%)}
+    html[data-theme="dark"] .poster-two:before{background:linear-gradient(103deg,#414c43,#9ba99d 53%,#202922)}
+    html[data-theme="dark"] .poster-two:after{background:linear-gradient(118deg,transparent 44%,#080c0b55 44%,#080c0b55 57%,transparent 57%)}
+    html[data-theme="dark"] .poster-two .poster-label,
+    html[data-theme="dark"] .poster-two .project-corner{color:#e0e6e0}
+    html[data-theme="dark"] .poster-three{background:linear-gradient(136deg,#3c3e40,#202123)}
+    html[data-theme="dark"] .poster-three:before{background:linear-gradient(95deg,#525856,#c2cbc4 27%,#78827b 58%,#242927);box-shadow:29px 17px 42px #0009}
+    html[data-theme="dark"] .poster-three:after{background:linear-gradient(125deg,#d0d7d0,#656e67)}
+    html[data-theme="dark"] .poster-four{background:linear-gradient(135deg,#343b37,#1c2420)}
+    html[data-theme="dark"] .poster-four:before{border-color:#adbfae;box-shadow:14px 28px 30px #0006,inset 10px 12px 22px #0006}
+    html[data-theme="dark"] .poster-four:after{border-color:#c7d6c788}
+    html[data-theme="dark"] .poster-five{background:linear-gradient(145deg,#303338,#16181c)}
+    html[data-theme="dark"] .poster-five:before{background:repeating-linear-gradient(90deg,#bdc9c0 0 5%,transparent 5% 12%)}
+    html[data-theme="dark"] .project-meta>span,
+    html[data-theme="dark"] .section-no,
+    html[data-theme="dark"] .demo-note,
+    html[data-theme="dark"] .footer-small{color:#a1aaa4}
+    html[data-theme="dark"] .contact{background:#1b1b1e}
+    html[data-theme="dark"] .contact-form{background:#242426;box-shadow:0 15px 45px #0002}
+    html[data-theme="dark"] .form-field span{color:#b7beb9}
+    html[data-theme="dark"] .form-field input,
+    html[data-theme="dark"] .form-field textarea{background:#242426;border-bottom-color:#4b4d4c;color:var(--ink)}
+    html[data-theme="dark"] .form-field input:focus,
+    html[data-theme="dark"] .form-field textarea:focus{border-bottom-color:var(--sage)}
+    html[data-theme="dark"] .form-field input::placeholder,
+    html[data-theme="dark"] .form-field textarea::placeholder{color:#9a9c9b}
+    html[data-theme="dark"] .form-note{color:#a5aaa6}
+    html[data-theme="dark"] .modal{background:#242426;box-shadow:0 32px 100px #0008}
+    html[data-theme="dark"] .modal::backdrop{background:rgba(0,0,0,.72)}
+    html[data-theme="dark"] .modal-close{background:#343437}
+    .header-inner{position:relative}
+    .theme-toggle{position:absolute;left:calc(var(--pad) + 100px);top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;width:52px;height:44px;padding:0;border:0;background:transparent;color:var(--ink);z-index:1}
+    .theme-toggle-track{position:relative;width:50px;height:28px;border:1px solid var(--line);border-radius:18px;background:var(--soft)}
+    .theme-toggle-thumb{position:absolute;left:3px;top:3px;display:grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--ink);color:var(--paper);transition:transform .25s}
+    .theme-toggle svg{width:13px;height:13px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .theme-toggle .theme-moon{display:none}
+    html[data-theme="dark"] .theme-toggle-thumb{transform:translateX(22px)}
+    html[data-theme="dark"] .theme-toggle .theme-sun{display:none}
+    html[data-theme="dark"] .theme-toggle .theme-moon{display:block}
+    @media(max-width:760px){.theme-toggle{left:auto;right:calc(var(--pad) + 58px)}}
+    /* Reveal the new palette from the upper edge, over the old palette snapshot. */
+    html.theme-switching::view-transition-old(root),
+    html.theme-switching::view-transition-new(root){animation:none;mix-blend-mode:normal}
+    html.theme-switching::view-transition-old(root){z-index:1}
+    html.theme-switching::view-transition-new(root){z-index:2}
+    html.theme-switching::view-transition-group(root){animation-duration:0s}
   </style>
 </head>
 <body id="top">
   <header class="site-header">
     <div class="header-inner shell">
       <a class="brand" href="#top" aria-label="Edit Effects — на главную"><span class="brand-text"><span>edit</span><span>effects.</span></span></a>
+      <button class="theme-toggle" type="button" role="switch" aria-checked="false" aria-label="Тёмная тема" title="Переключить тему">
+        <span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb">
+          <svg class="theme-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5"/></svg>
+          <svg class="theme-moon" viewBox="0 0 24 24"><path d="M20 15.5A8.5 8.5 0 0 1 8.5 4 8.5 8.5 0 1 0 20 15.5Z"/></svg>
+        </span></span>
+      </button>
       <button class="menu-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav"><i></i><i></i></button>
       <nav class="nav" id="site-nav" aria-label="Навигация"><a href="#works">Проекты</a><a href="#services">Услуги</a><a href="#process">Процесс</a><a class="nav-cta" href="#contact">Обсудить проект <span aria-hidden="true">↗</span></a></nav>
     </div>
@@ -184,6 +265,45 @@
   <dialog id="project-dialog" class="modal" aria-labelledby="dialog-title"><div class="modal-inner"><div class="modal-head"><strong>EDIT EFFECTS / ПРОЕКТ</strong><button type="button" class="modal-close" data-close-modal aria-label="Закрыть окно">×</button></div><div class="modal-video"><iframe id="dialog-video" title="Видео проекта Edit Effects" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><h3 id="dialog-title">Название проекта</h3><p id="dialog-copy">Демонстрационный проект.</p></div></dialog>
   <script>
     (function(){
+      const themeToggle=document.querySelector('.theme-toggle');
+      const themeRoot=document.documentElement;
+      let themeBusy=false;
+      function applyTheme(dark){
+        themeRoot.dataset.theme=dark?'dark':'light';
+        themeToggle.setAttribute('aria-checked',String(dark));
+        document.querySelector('meta[name="theme-color"]').content=dark?'#111113':'#fbfcfa';
+        document.querySelector('meta[name="color-scheme"]').content=dark?'dark':'light';
+        try{localStorage.setItem('edit-effects-theme',dark?'dark':'light');}catch(error){}
+      }
+      themeToggle.setAttribute('aria-checked',String(themeRoot.dataset.theme==='dark'));
+      themeToggle.addEventListener('click',async()=>{
+        if(themeBusy)return;
+        const dark=themeRoot.dataset.theme!=='dark';
+        if(!document.startViewTransition||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          applyTheme(dark);
+          return;
+        }
+        themeBusy=true;
+        themeRoot.classList.add('theme-switching');
+        let transition;
+        try{
+          transition=document.startViewTransition(()=>applyTheme(dark));
+          await transition.ready;
+          // A broad elliptical wave starts at the top and rolls down the viewport.
+          const reveal=themeRoot.animate(
+            {clipPath:['ellipse(75% 0% at 50% 0%)','ellipse(75% 150% at 50% 0%)']},
+            {duration:950,easing:'cubic-bezier(.22,.61,.36,1)',pseudoElement:'::view-transition-new(root)'}
+          );
+          await reveal.finished;
+          await transition.finished;
+        }catch(error){
+          if(transition)transition.skipTransition();
+          applyTheme(dark);
+        }finally{
+          themeRoot.classList.remove('theme-switching');
+          themeBusy=false;
+        }
+      });
       const header=document.querySelector('.site-header');
       const menu=document.querySelector('.menu-toggle');
       menu.addEventListener('click',()=>{const opened=header.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?'Закрыть меню':'Открыть меню');});
