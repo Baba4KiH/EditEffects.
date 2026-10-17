@@ -116,6 +116,26 @@
     @media(max-width:760px){html{scroll-padding-top:75px}.header-inner{height:74px}.menu-toggle{display:flex}.nav{position:absolute;left:0;right:0;top:74px;background:var(--paper);padding:20px var(--pad) 28px;display:none;flex-direction:column;align-items:stretch;gap:0;border-bottom:1px solid var(--line);box-shadow:0 15px 20px #071b110a}.site-header.menu-open .nav{display:flex}.nav a{padding:14px 0;font-size:14px}.nav a.nav-cta{border-left:0;border-top:1px solid var(--line);padding:18px 0 0;margin-top:9px;justify-content:space-between}.hero{display:flex;flex-direction:column;padding-top:58px;padding-bottom:40px;gap:36px;min-height:0}.hero-copy{display:block}h1{font-size:clamp(54px,10.2vw,82px);margin:26px 0}.hero-art{min-height:430px}.hero-desc{font-size:14px}.capabilities{flex-wrap:wrap;justify-content:flex-start;column-gap:28px;row-gap:18px;padding-block:25px}.capabilities>span:first-child{width:100%;max-width:none}.section{padding-top:83px}.section-head{display:block;margin-bottom:28px}.section-head p{margin-top:18px}.projects{grid-template-columns:1fr;gap:28px}.project-art{aspect-ratio:1/.72}.project-meta{padding-top:14px}.services{display:block;padding-top:95px}.services-intro p{margin-bottom:29px}.service summary{min-height:83px}.workflow{padding-top:95px;padding-bottom:88px}.workflow-head{display:block}.workflow-head>p{margin-top:17px}.workflow-grid{grid-template-columns:1fr}.step{padding:27px 0 29px;min-height:auto}.step+.step{border-left:0;border-top:1px solid var(--line);padding-left:0}.step-number{margin-bottom:22px}.contact{padding-block:75px}.contact-grid{grid-template-columns:1fr;gap:34px}.contact h2{font-size:clamp(51px,10vw,75px)}.site-footer{padding-top:24px;padding-bottom:25px;min-height:0;flex-wrap:wrap}.footer-small{order:3;flex-basis:100%}}
     @media(max-width:420px){.hero-art{min-height:360px}h1{font-size:54px}.hero-actions{gap:22px}.btn{gap:24px}.art-heading{inset:19px 19px auto}.art-footer{left:19px;right:19px;bottom:19px}.contact-form{padding:25px 21px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important;animation:none!important}}
+
+    .carousel-viewport{overflow:hidden;touch-action:pan-y;cursor:grab;user-select:none}
+    .carousel-viewport.is-dragging,.carousel-viewport.is-dragging button{cursor:grabbing}
+    .carousel-viewport .projects{display:flex;gap:19px}
+    .carousel-viewport .project{flex:0 0 calc((100% - 38px)/3)}
+    .carousel-viewport .project-art:focus-visible{outline-offset:-4px}
+    .carousel-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:27px}
+    .carousel-hint{font-size:11px;color:var(--muted)}
+    .carousel-actions{display:flex;align-items:center;gap:10px}
+    .carousel-arrow,.carousel-pause{height:44px;border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .2s,border-color .2s}
+    .carousel-arrow{width:46px;font-size:23px}
+    .carousel-pause{padding:0 14px;font-size:11px;font-weight:700}
+    .carousel-arrow:hover,.carousel-pause:hover{background:var(--soft);border-color:var(--sage)}
+    .poster-four{background:linear-gradient(135deg,#bdcbc4,#324d46)}
+    .poster-four:before{content:"";position:absolute;inset:16% 13%;border:24px solid #dbe6d7;border-radius:50%;transform:rotate(-35deg) scaleY(.62);box-shadow:14px 28px 30px #142d3655,inset 10px 12px 22px #142d3644}
+    .poster-four:after{content:"";position:absolute;inset:9% 20%;border:2px solid #eff8df88;border-radius:50%;transform:rotate(25deg) scaleY(.75)}
+    .poster-five{background:linear-gradient(145deg,#303c43,#111c24)}
+    .poster-five:before{content:"";position:absolute;inset:19% 16%;background:repeating-linear-gradient(90deg,#b8c9ce 0 5%,transparent 5% 12%);clip-path:polygon(0 40%,12% 35%,24% 15%,36% 29%,48% 0,60% 22%,72% 12%,84% 35%,100% 42%,100% 58%,84% 65%,72% 88%,60% 78%,48% 100%,36% 71%,24% 85%,12% 65%,0 60%);filter:drop-shadow(0 12px 15px #0008)}
+    @media(max-width:1050px){.carousel-viewport .project{flex-basis:calc((100% - 19px)/2)}}
+    @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}.carousel-controls{flex-wrap:wrap}.carousel-hint{font-size:10px}}
   </style>
 </head>
 <body id="top">
@@ -143,12 +163,23 @@
     <div class="capabilities shell" aria-label="Направления работы"><span>Фокусируемся на главном</span><span class="cap-item">ВИДЕОМОНТАЖ</span><span class="cap-item">MOTION DESIGN</span><span class="cap-item">ЦВЕТОКОРРЕКЦИЯ</span><span class="cap-item">SOUND DESIGN</span></div>
     <section class="section shell" id="works" aria-labelledby="works-heading">
       <div class="section-head"><div><span class="eyebrow">01 / ПОРТФОЛИО</span><h2 id="works-heading">Избранные проекты<span class="period">.</span></h2></div><p>Разные форматы. Единое внимание к ритму, настроению и каждому кадру.</p></div>
-      <div class="projects">
-        <article class="project"><button class="project-art poster-one" type="button" data-project="0" aria-label="Подробнее о концепте Form in Motion"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 01</span></button><div class="project-meta"><div><h3>Form in Motion</h3><p>Бренд-фильм · Монтаж</p></div><span>01 / 03</span></div></article>
-        <article class="project"><button class="project-art poster-two" type="button" data-project="1" aria-label="Подробнее о концепте Silent Geometry"><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 02</span></button><div class="project-meta"><div><h3>Silent Geometry</h3><p>Имиджевое видео · Цвет</p></div><span>02 / 03</span></div></article>
-        <article class="project"><button class="project-art poster-three" type="button" data-project="2" aria-label="Подробнее о концепте Object / 03"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 03</span></button><div class="project-meta"><div><h3>Object / 03</h3><p>Рекламное видео · Графика</p></div><span>03 / 03</span></div></article>
+      <div class="portfolio-carousel" role="region" aria-roledescription="карусель" aria-label="Примеры проектов">
+        <div class="carousel-viewport" id="portfolio-viewport"><div class="projects">
+        <article class="project"><button class="project-art poster-one" type="button" data-project="0" aria-label="Подробнее о концепте Form in Motion"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 01</span></button><div class="project-meta"><div><h3>Form in Motion</h3><p>Бренд-фильм · Монтаж</p></div><span>01 / 05</span></div></article>
+        <article class="project"><button class="project-art poster-two" type="button" data-project="1" aria-label="Подробнее о концепте Silent Geometry"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 02</span></button><div class="project-meta"><div><h3>Silent Geometry</h3><p>Имиджевое видео · Цвет</p></div><span>02 / 05</span></div></article>
+        <article class="project"><button class="project-art poster-three" type="button" data-project="2" aria-label="Подробнее о концепте Object / 03"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 03</span></button><div class="project-meta"><div><h3>Object / 03</h3><p>Рекламное видео · Графика</p></div><span>03 / 05</span></div></article>
+        <article class="project"><button class="project-art poster-four" type="button" data-project="3" aria-label="Подробнее о концепте Light Waves"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 04</span></button><div class="project-meta"><div><h3>Light Waves</h3><p>Motion-дизайн · Анимация</p></div><span>04 / 05</span></div></article>
+        <article class="project"><button class="project-art poster-five" type="button" data-project="4" aria-label="Подробнее о концепте Echo Studio"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 05</span></button><div class="project-meta"><div><h3>Echo Studio</h3><p>Звук · Саунд-дизайн</p></div><span>05 / 05</span></div></article>
+        </div></div>
+        <div class="carousel-controls">
+          <span class="carousel-hint">Листайте или перетаскивайте</span>
+          <div class="carousel-actions">
+            <button class="carousel-pause" type="button" aria-pressed="false">Пауза</button>
+            <button class="carousel-arrow" type="button" data-direction="-1" aria-controls="portfolio-viewport" aria-label="Предыдущий проект">←</button>
+            <button class="carousel-arrow" type="button" data-direction="1" aria-controls="portfolio-viewport" aria-label="Следующий проект">→</button>
+          </div>
+        </div>
       </div>
-      
     </section>
     <section class="services shell" id="services" aria-labelledby="services-heading">
       <div class="services-intro"><span class="eyebrow">02 / ЭКСПЕРТИЗА</span><h2 id="services-heading">От идеи<br>до финального<br>результата<span class="period">.</span></h2><p>Подключаемся на любом этапе. Выстраиваем историю, делаем изображение выразительнее и бережно относимся к каждой детали.</p></div>
@@ -219,9 +250,123 @@
       const projects=[
         {name:'Form in Motion',poster:'poster-one',text:'Бренд-фильм · Монтаж. Демонстрационный визуальный концепт. Здесь появится реальный ролик студии с описанием задачи, решения и результата.'},
         {name:'Silent Geometry',poster:'poster-two',text:'Имиджевое видео · Цвет. Демонстрационный визуальный концепт. Заменим на ваш кейс с видеоплеером, кадрами и краткой историей проекта.'},
-        {name:'Object / 03',poster:'poster-three',text:'Рекламное видео · Графика. Демонстрационный визуальный концепт. В дальнейшем подключим настоящую работу и детали производства.'}
+        {name:'Object / 03',poster:'poster-three',text:'Рекламное видео · Графика. Демонстрационный визуальный концепт. В дальнейшем подключим настоящую работу и детали производства.'},
+        {name:'Light Waves',poster:'poster-four',text:'Motion-дизайн · Анимация. Демонстрационный концепт: свет, пластика и движение абстрактных форм.'},
+        {name:'Echo Studio',poster:'poster-five',text:'Звук · Саунд-дизайн. Демонстрационный концепт: визуальный ритм, звуковая атмосфера и выразительные акценты.'}
       ];
       const dialog=document.getElementById('project-dialog');
+      const carousel=document.querySelector('.portfolio-carousel');
+      const viewport=carousel.querySelector('.carousel-viewport');
+      const track=carousel.querySelector('.projects');
+      const originals=Array.from(track.children);
+      // Three identical sets allow seamless movement in either direction.
+      function cloneSet(){
+        return originals.map(card=>{
+          const copy=card.cloneNode(true);
+          copy.setAttribute('aria-hidden','true');
+          copy.querySelectorAll('button').forEach(button=>button.tabIndex=-1);
+          return copy;
+        });
+      }
+      track.prepend(...cloneSet());
+      track.append(...cloneSet());
+      const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
+      const pauseButton=carousel.querySelector('.carousel-pause');
+      let cycle=0,step=0,position=0,hovered=false,paused=motion.matches;
+      let dragging=null,suppressClick=false,tween=null,previousTime=0,visible=true;
+      function render(){
+        if(cycle)viewport.scrollLeft=cycle+((position%cycle)+cycle)%cycle;
+      }
+      function measure(){
+        const oldStep=step;
+        step=originals[1].getBoundingClientRect().left-originals[0].getBoundingClientRect().left;
+        cycle=step*originals.length;
+        if(oldStep)position=position/oldStep*step;
+        tween=null;
+        render();
+      }
+      measure();
+      new ResizeObserver(measure).observe(viewport);
+      new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;}).observe(viewport);
+      function updatePause(){
+        pauseButton.textContent=paused?'Продолжить':'Пауза';
+        pauseButton.setAttribute('aria-pressed',String(paused));
+      }
+      updatePause();
+      pauseButton.addEventListener('click',()=>{paused=!paused;updatePause();});
+      motion.addEventListener('change',()=>{paused=motion.matches;tween=null;updatePause();});
+      viewport.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')hovered=true;});
+      viewport.addEventListener('pointerleave',()=>{hovered=false;});
+      viewport.addEventListener('focusin',()=>{
+        // Native keyboard focus may scroll an off-screen original into view.
+        position=viewport.scrollLeft-cycle;
+        tween=null;
+      });
+      function move(direction){
+        const target=position+direction*step;
+        if(motion.matches){position=target;render();return;}
+        tween={from:position,to:target,start:performance.now()};
+      }
+      carousel.querySelectorAll('[data-direction]').forEach(button=>{
+        button.addEventListener('click',()=>move(Number(button.dataset.direction)));
+      });
+      viewport.addEventListener('keydown',event=>{
+        if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
+          event.preventDefault();move(event.key==='ArrowLeft'?-1:1);
+        }
+      });
+      viewport.addEventListener('pointerdown',event=>{
+        if(!event.isPrimary||event.button!==0)return;
+        tween=null;suppressClick=false;
+        dragging={id:event.pointerId,x:event.clientX,y:event.clientY,start:position,moved:false};
+      });
+      viewport.addEventListener('pointermove',event=>{
+        if(!dragging||dragging.id!==event.pointerId)return;
+        const dx=event.clientX-dragging.x,dy=event.clientY-dragging.y;
+        if(!dragging.moved){
+          if(Math.abs(dx)<6)return;
+          if(event.pointerType!=='mouse'&&Math.abs(dy)>Math.abs(dx))return;
+          dragging.moved=true;
+          viewport.setPointerCapture(event.pointerId);
+          viewport.classList.add('is-dragging');
+        }
+        position=dragging.start-dx;
+        render();
+      });
+      function endDrag(event){
+        if(!dragging||dragging.id!==event.pointerId)return;
+        suppressClick=dragging.moved;
+        dragging=null;
+        viewport.classList.remove('is-dragging');
+        if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);
+      }
+      window.addEventListener('pointerup',endDrag);
+      window.addEventListener('pointercancel',endDrag);
+      viewport.addEventListener('lostpointercapture',endDrag);
+      viewport.addEventListener('dragstart',event=>event.preventDefault());
+      viewport.addEventListener('click',event=>{
+        if(suppressClick&&event.detail!==0){
+          event.preventDefault();event.stopImmediatePropagation();suppressClick=false;
+        }
+      },true);
+      function tick(time){
+        const dt=previousTime?Math.min(time-previousTime,50):0;
+        previousTime=time;
+        if(!document.hidden&&visible&&!dragging){
+          if(tween){
+            const progress=Math.min((time-tween.start)/450,1);
+            const eased=1-Math.pow(1-progress,3);
+            position=tween.from+(tween.to-tween.from)*eased;
+            if(progress===1)tween=null;
+            render();
+          }else if(!paused&&!hovered&&!dialog.open&&!carousel.querySelector(':focus-visible')){
+            position+=dt*0.018;
+            render();
+          }
+        }
+        requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
       document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{const p=projects[Number(button.dataset.project)];document.getElementById('dialog-title').textContent=p.name;document.getElementById('dialog-copy').textContent=p.text;document.getElementById('dialog-art').className='artshape '+p.poster;if(typeof dialog.showModal==='function')dialog.showModal();}));
       document.querySelector('[data-close-modal]').addEventListener('click',()=>dialog.close());
       dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
