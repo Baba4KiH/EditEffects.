@@ -123,19 +123,17 @@
     .carousel-viewport .project{flex:0 0 calc((100% - 38px)/3)}
     .carousel-viewport .project-art:focus-visible{outline-offset:-4px}
     .carousel-controls{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-top:27px}
-    .carousel-hint{font-size:11px;color:var(--muted)}
-    .carousel-actions{display:flex;align-items:center;gap:10px}
-    .carousel-arrow,.carousel-pause{height:44px;border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .2s,border-color .2s}
+    .carousel-actions{display:flex;width:100%;justify-content:space-between;align-items:center;gap:10px}
+    .carousel-arrow{height:44px;border:1px solid var(--line);background:transparent;color:var(--ink);transition:background .2s,border-color .2s}
     .carousel-arrow{width:46px;font-size:23px}
-    .carousel-pause{padding:0 14px;font-size:11px;font-weight:700}
-    .carousel-arrow:hover,.carousel-pause:hover{background:var(--soft);border-color:var(--sage)}
+    .carousel-arrow:hover{background:var(--soft);border-color:var(--sage)}
     .poster-four{background:linear-gradient(135deg,#bdcbc4,#324d46)}
     .poster-four:before{content:"";position:absolute;inset:16% 13%;border:24px solid #dbe6d7;border-radius:50%;transform:rotate(-35deg) scaleY(.62);box-shadow:14px 28px 30px #142d3655,inset 10px 12px 22px #142d3644}
     .poster-four:after{content:"";position:absolute;inset:9% 20%;border:2px solid #eff8df88;border-radius:50%;transform:rotate(25deg) scaleY(.75)}
     .poster-five{background:linear-gradient(145deg,#303c43,#111c24)}
     .poster-five:before{content:"";position:absolute;inset:19% 16%;background:repeating-linear-gradient(90deg,#b8c9ce 0 5%,transparent 5% 12%);clip-path:polygon(0 40%,12% 35%,24% 15%,36% 29%,48% 0,60% 22%,72% 12%,84% 35%,100% 42%,100% 58%,84% 65%,72% 88%,60% 78%,48% 100%,36% 71%,24% 85%,12% 65%,0 60%);filter:drop-shadow(0 12px 15px #0008)}
     @media(max-width:1050px){.carousel-viewport .project{flex-basis:calc((100% - 19px)/2)}}
-    @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}.carousel-controls{flex-wrap:wrap}.carousel-hint{font-size:10px}}
+    @media(max-width:760px){.carousel-viewport .project{flex-basis:86%}.carousel-controls{flex-wrap:wrap}}
   </style>
 </head>
 <body id="top">
@@ -172,9 +170,7 @@
         <article class="project"><button class="project-art poster-five" type="button" data-project="4" aria-label="Подробнее о концепте Echo Studio"><span class="grain"></span><span class="project-corner" aria-hidden="true">↗</span><span class="poster-label">VISUAL STUDY / 05</span></button><div class="project-meta"><div><h3>Echo Studio</h3><p>Звук · Саунд-дизайн</p></div><span>05 / 05</span></div></article>
         </div></div>
         <div class="carousel-controls">
-          <span class="carousel-hint">Листайте или перетаскивайте</span>
           <div class="carousel-actions">
-            <button class="carousel-pause" type="button" aria-pressed="false">Пауза</button>
             <button class="carousel-arrow" type="button" data-direction="-1" aria-controls="portfolio-viewport" aria-label="Предыдущий проект">←</button>
             <button class="carousel-arrow" type="button" data-direction="1" aria-controls="portfolio-viewport" aria-label="Следующий проект">→</button>
           </div>
@@ -271,7 +267,6 @@
       track.prepend(...cloneSet());
       track.append(...cloneSet());
       const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-      const pauseButton=carousel.querySelector('.carousel-pause');
       let cycle=0,step=0,position=0,hovered=false,paused=motion.matches;
       let dragging=null,suppressClick=false,tween=null,previousTime=0,visible=true;
       function render(){
@@ -288,13 +283,7 @@
       measure();
       new ResizeObserver(measure).observe(viewport);
       new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;}).observe(viewport);
-      function updatePause(){
-        pauseButton.textContent=paused?'Продолжить':'Пауза';
-        pauseButton.setAttribute('aria-pressed',String(paused));
-      }
-      updatePause();
-      pauseButton.addEventListener('click',()=>{paused=!paused;updatePause();});
-      motion.addEventListener('change',()=>{paused=motion.matches;tween=null;updatePause();});
+      motion.addEventListener('change',()=>{paused=motion.matches;tween=null;});
       viewport.addEventListener('pointerenter',event=>{if(event.pointerType==='mouse')hovered=true;});
       viewport.addEventListener('pointerleave',()=>{hovered=false;});
       viewport.addEventListener('focusin',()=>{
