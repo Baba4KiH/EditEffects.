@@ -191,3 +191,12 @@
     .stat dt{margin:0 0 15px;font-size:18px;font-weight:700;color:var(--muted)}
     .stat dd{margin:0;font-size:clamp(56px,7vw,96px);line-height:1.1;font-weight:450;letter-spacing:-.07em;color:var(--sage);font-variant-numeric:tabular-nums}
     @media(max-width:760px){.stat{padding:25px 12px 27px 0}.stat+.stat{padding-left:16px}.stat dd{font-size:clamp(36px,9.5vw,64px)}.stat dt{font-size:clamp(12px,3.2vw,16px)}.stats-heading{margin-bottom:24px}}
+
+    .form-consent{display:grid;grid-template-columns:20px minmax(0,1fr);gap:12px;align-items:start;margin:0 0 6px;min-height:44px}
+    .consent-checkbox{appearance:none;-webkit-appearance:none;box-sizing:border-box;width:20px;height:20px;margin:2px 0 0;border:1px solid var(--muted);border-radius:3px;background:transparent;display:grid;place-content:center;cursor:pointer}
+    .consent-checkbox::before{content:"";width:10px;height:6px;border-left:2px solid var(--paper);border-bottom:2px solid var(--paper);transform:translateY(-1px) rotate(-45deg) scale(0)}
+    .consent-checkbox:checked{background:var(--sage-deep);border-color:var(--sage-deep)}
+    .consent-checkbox:checked::before{transform:translateY(-1px) rotate(-45deg) scale(1)}
+    .form-consent label{min-width:0;min-height:44px;font-size:12px;line-height:1.7;color:var(--muted);cursor:pointer;overflow-wrap:anywhere}
+    .form-consent a,.consent-policy a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+    .consent-policy{margin:0 0 20px 32px;font-size:11px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
