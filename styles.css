@@ -202,3 +202,12 @@
     .consent-policy{margin:0 0 20px 32px;font-size:11px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
 
     .form-honeypot{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;pointer-events:none}
+
+    /* Keep portfolio animation visible while the unreleased section is locked. */
+    .portfolio-pending{position:relative;isolation:isolate}
+    .portfolio-preview{filter:blur(9px);opacity:.55;pointer-events:none;user-select:none;-webkit-user-select:none}
+    .portfolio-preview *{pointer-events:none!important}
+    .portfolio-coming-message{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:28px;cursor:default;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+    .portfolio-coming-message::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,var(--paper) 0%,transparent 74%)}
+    .portfolio-coming-message h2{margin:0;font-size:clamp(48px,7.5vw,104px);line-height:1.1;font-weight:550;letter-spacing:-.065em;color:var(--ink)}
+    .portfolio-coming-message p{margin:16px 0 0;font-size:clamp(14px,1.5vw,18px);line-height:1.6;color:var(--sage-deep)}
