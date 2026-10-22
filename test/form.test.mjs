@@ -37,14 +37,6 @@ test('configured form sends JSON and waits for confirmed success', async () => {
   assert.equal(app.button.disabled, false);
 });
 
-test('static GitHub Pages config keeps clipboard mode', async () => {
-  const app = mount({ endpoint: '' });
-  await app.submit();
-  assert.equal(app.copies.length, 1);
-  assert.equal(app.requests.length, 0);
-  assert.match(app.result.textContent, /скопирована/);
-});
-
 test('honeypot and invalid form never call API', async () => {
   for (const options of [{ trap: 'spam' }, { valid: false }]) {
     const app = mount(options);
@@ -65,10 +57,10 @@ test('delivery errors show failure and restore the submit button', async () => {
   }
 });
 
-test('safe Telegram diagnostic code reaches the form and leaves it available for retry', async () => {
+test('delivery failure leaves the form available for retry', async () => {
   const app = mount({ status: 502, response: { code: 'TELEGRAM_CHAT_NOT_FOUND', error: 'Telegram не нашёл чат.' } });
   await app.submit();
-  assert.match(app.result.textContent, /TELEGRAM_CHAT_NOT_FOUND/);
+  assert.doesNotMatch(app.result.textContent, /TELEGRAM_CHAT_NOT_FOUND/);
   assert.equal(app.button.disabled, false);
 });
 
@@ -110,3 +102,4 @@ test('form starts locked with POST fallback and enables only after initializatio
   assert.equal(app.button.disabled, false);
   assert.equal(app.unavailable.hidden, true);
 });
+

@@ -104,3 +104,4 @@ test('server only serves public assets, never secrets or source code', async () 
   const config = await handler(new Request('http://localhost:3000/form-config.js'));
   assert.ok((await config.text()).includes('/api/brief'));
 });
+

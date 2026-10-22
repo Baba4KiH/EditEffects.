@@ -2,7 +2,9 @@
   "name": "ee-project-requests",
   "private": true,
   "type": "module",
-  "engines": { "node": ">=22" },
+  "engines": {
+    "node": ">=24"
+  },
   "scripts": {
     "start": "node --env-file-if-exists=.env server/index.mjs",
     "telegram:check": "node --env-file-if-exists=.env server/check-telegram.mjs",
@@ -10,4 +12,3 @@
     "test": "node --test"
   }
 }
-

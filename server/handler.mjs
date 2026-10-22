@@ -2,6 +2,9 @@ import { readFile } from 'node:fs/promises';
 import { telegramCall, TelegramError } from './telegram.mjs';
 
 const publicFiles = new Map([
+  ['/fonts/manrope.woff2', ['fonts/manrope.woff2', 'font/woff2']],
+  ['/site-1.js', ['site-1.js', 'text/javascript']],
+  ['/site-2.js', ['site-2.js', 'text/javascript']],
   ['/og-image.png', ['og-image.png', 'image/png']],
   ['/sitemap.xml', ['sitemap.xml', 'application/xml']],
   ['/', ['index.html', 'text/html']], ['/index.html', ['index.html', 'text/html']],
@@ -28,26 +31,45 @@ async function readJson(request) {
   } catch (error) { throw error === 413 ? 413 : 400; }
 }
 
-export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = fetch, now = Date.now } = {}) {
+export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = fetch, now = Date.now, siteUrl = '', indexing = false, production = false, googleVerification = '', yandexVerification = '', log = () => {} } = {}) {
   token = String(token || '').trim();
   chatId = String(chatId || '').trim();
   const attempts = new Map();
+  const escape = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+  const render = text => text.replaceAll('{{SITE_URL}}', siteUrl || 'http://localhost:3000')
+    .replaceAll('{{ROBOTS}}', indexing ? 'index, follow, max-image-preview:large' : 'noindex, nofollow')
+    .replace('</head>', (googleVerification ? '<meta name="google-site-verification" content="' + escape(googleVerification) + '">' : '') +
+      (yandexVerification ? '<meta name="yandex-verification" content="' + escape(yandexVerification) + '">' : '') + '</head>');
   return async function handle(request, ip = 'unknown') {
     const pathname = new URL(request.url).pathname;
-    const headers = { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff' };
+    const headers = { 'cache-control': 'no-store', 'x-content-type-options': 'nosniff',
+      'referrer-policy': 'strict-origin-when-cross-origin', 'x-frame-options': 'DENY',
+      'permissions-policy': 'camera=(), microphone=(), geolocation=()',
+      'content-security-policy': "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-src 'none'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'" };
+    if (!indexing) headers['x-robots-tag'] = 'noindex, nofollow';
     const json = (status, data) => Response.json(data, { status, headers });
     if (pathname !== '/api/brief') {
       if (request.method !== 'GET' && request.method !== 'HEAD') return json(405, { error: 'Метод не поддерживается.' });
+      if (pathname === '/healthz') return json(200, { ok: true });
+      if (pathname === '/robots.txt') return new Response(request.method === 'HEAD' ? null :
+        (indexing ? 'User-agent: *\nAllow: /\nSitemap: ' + siteUrl + '/sitemap.xml\n' : 'User-agent: *\nDisallow: /\n'),
+        { headers: { ...headers, 'content-type': 'text/plain; charset=utf-8' } });
       if (pathname === '/form-config.js') {
         return new Response(request.method === 'HEAD' ? null : 'window.EE_FORM_CONFIG = { endpoint: "/api/brief" };', {
           headers: { ...headers, 'content-type': 'text/javascript; charset=utf-8' },
         });
       }
       const file = publicFiles.get(pathname);
-      if (!file) return json(404, { error: 'Страница не найдена.' });
+      if (!file) return new Response(request.method === 'HEAD' ? null : await readFile(new URL('../404.html', import.meta.url)), {
+        status: 404, headers: { ...headers, 'content-type': 'text/html; charset=utf-8' } });
       try {
-        const body = await readFile(new URL('../' + file[0], import.meta.url));
-        return new Response(request.method === 'HEAD' ? null : body, { headers: { ...headers, 'content-type': file[1] + '; charset=utf-8' } });
+        let body = await readFile(new URL('../' + file[0], import.meta.url));
+        const dynamic = file[1] === 'text/html' || file[1] === 'application/xml';
+        if (dynamic) {
+          body = render(body.toString('utf8'));
+          if (!production && pathname !== '/sitemap.xml') body = body.replace('<main', '<p class="test-banner" role="status">Тестовая версия: используйте только вымышленные данные.</p><main');
+        } else headers['cache-control'] = 'public, max-age=3600';
+        return new Response(request.method === 'HEAD' ? null : body, { headers: { ...headers, 'content-type': file[1] + (/^(text\/|application\/xml)/.test(file[1]) ? '; charset=utf-8' : '') } });
       } catch { return json(404, { error: 'Страница не найдена.' }); }
     }
     const origin = request.headers.get('origin');
@@ -59,7 +81,7 @@ export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = 
       return new Response(null, { status: 204, headers });
     }
     if (request.method !== 'POST') return json(405, { error: 'Используйте POST.' });
-    if (!token || !chatId) return json(503, { code: 'TELEGRAM_NOT_CONFIGURED', error: 'Отправка пока не настроена. Заполните TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в .env и перезапустите сервер.' });
+    if (!token || !chatId) return json(503, { code: 'TELEGRAM_NOT_CONFIGURED', error: 'Форма временно недоступна. Напишите нам в Telegram @baba4kih.' });
     if (request.headers.get('content-type')?.split(';')[0].trim() !== 'application/json') return json(415, { error: 'Нужен формат JSON.' });
     const time = now();
     for (const [key, value] of attempts) if (value.expires <= time) attempts.delete(key);
@@ -92,7 +114,7 @@ export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = 
       return json(200, { ok: true });
     } catch (error) {
       // Fixed, safe messages only, never Telegram's raw response or URL.
-      if (error instanceof TelegramError) return json(502, { code: error.code, error: error.message });
+      if (error instanceof TelegramError) { log(error.code); return json(502, { code: error.code, error: 'Не удалось подтвердить отправку. Попробуйте позже или напишите нам в Telegram @baba4kih.' }); }
       return json(502, { error: 'Не удалось подтвердить отправку. Попробуйте позже.' });
     }
   };

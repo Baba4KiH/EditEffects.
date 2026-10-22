@@ -1,0 +1,22 @@
+[Unit]
+Description=ee website
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=ee
+Group=ee
+WorkingDirectory=/opt/ee
+ExecStart=/usr/bin/node --env-file=/opt/ee/.env /opt/ee/server/index.mjs
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

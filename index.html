@@ -5,27 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
   <meta name="theme-color" content="#fbfcfa">
-  <script>
-    try {
-      if(localStorage.getItem('edit-effects-theme')==='dark'){
-        document.documentElement.dataset.theme='dark';
-        document.querySelector('meta[name="theme-color"]').content='#111113';
-        document.querySelector('meta[name="color-scheme"]').content='dark';
-      }
-    } catch(error) {}
-  </script>
+  <script src="/site-1.js"></script>
   <meta name="description" content="Видеомонтаж, motion-дизайн, цветокоррекция и саунд-дизайн. Помогаем создавать видео, которое будут смотреть.">
   <title>ee. — видеомонтаж и постпродакшн</title>
-  <link rel="canonical" href="https://baba4kih.github.io/EditEffects./">
+  <link rel="canonical" href="{{SITE_URL}}/">
   <link rel="sitemap" type="application/xml" href="./sitemap.xml">
-  <meta name="robots" content="index, follow, max-image-preview:large">
+  <meta name="robots" content="{{ROBOTS}}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="ee.">
   <meta property="og:locale" content="ru_RU">
   <meta property="og:title" content="ee. — видеомонтаж и постпродакшн">
   <meta property="og:description" content="Видеомонтаж, motion-дизайн, цветокоррекция и саунд-дизайн. Помогаем создавать видео, которое будут смотреть.">
-  <meta property="og:url" content="https://baba4kih.github.io/EditEffects./">
-  <meta property="og:image" content="https://baba4kih.github.io/EditEffects./og-image.png">
+  <meta property="og:url" content="{{SITE_URL}}/">
+  <meta property="og:image" content="{{SITE_URL}}/og-image.png">
   <meta property="og:image:type" content="image/png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -33,7 +25,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ee. — видеомонтаж и постпродакшн">
   <meta name="twitter:description" content="Видеомонтаж, motion-дизайн, цветокоррекция и саунд-дизайн. Помогаем создавать видео, которое будут смотреть.">
-  <meta name="twitter:image" content="https://baba4kih.github.io/EditEffects./og-image.png">
+  <meta name="twitter:image" content="{{SITE_URL}}/og-image.png">
   <meta name="twitter:image:alt" content="ee. — Каждый кадр. Имеет значение. Видеомонтаж и постпродакшн.">
   <script type="application/ld+json">
 {
@@ -41,25 +33,25 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://baba4kih.github.io/EditEffects./#organization",
+      "@id": "{{SITE_URL}}/#organization",
       "name": "ee.",
       "alternateName": "EditEffects",
-      "url": "https://baba4kih.github.io/EditEffects./",
+      "url": "{{SITE_URL}}/",
       "description": "Видеомонтаж, motion-дизайн, цветокоррекция и саунд-дизайн. Помогаем создавать видео, которое будут смотреть."
     },
     {
       "@type": "WebPage",
-      "@id": "https://baba4kih.github.io/EditEffects./#webpage",
-      "url": "https://baba4kih.github.io/EditEffects./",
+      "@id": "{{SITE_URL}}/#webpage",
+      "url": "{{SITE_URL}}/",
       "name": "ee. — видеомонтаж и постпродакшн",
       "description": "Видеомонтаж, motion-дизайн, цветокоррекция и саунд-дизайн. Помогаем создавать видео, которое будут смотреть.",
       "inLanguage": "ru-RU",
       "publisher": {
-        "@id": "https://baba4kih.github.io/EditEffects./#organization"
+        "@id": "{{SITE_URL}}/#organization"
       },
       "primaryImageOfPage": {
         "@type": "ImageObject",
-        "url": "https://baba4kih.github.io/EditEffects./og-image.png",
+        "url": "{{SITE_URL}}/og-image.png",
         "width": 1200,
         "height": 630
       }
@@ -67,14 +59,11 @@
   ]
 }
   </script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;450;500;550;600;650;700;750;800&display=swap" rel="stylesheet">
   <link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48">
   <link rel="icon" href="./favicon.svg" type="image/svg+xml" sizes="any">
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body id="top">
+<body id="top"><a class="skip-link" href="#main-content">Перейти к содержимому</a>
   <header class="site-header">
     <div class="header-inner shell">
       <a class="brand" href="#top" aria-label="ee. — на главную"><span class="brand-text"><span>e</span><span>e.</span></span></a>
@@ -88,12 +77,12 @@
       <nav class="nav" id="site-nav" aria-label="Навигация"><a href="#works">Проекты</a><a href="#services">Услуги</a><a href="#process">Процесс</a><a class="nav-cta" href="#contact">Обсудить проект <span aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a></nav>
     </div>
   </header>
-  <main>
+  <main id="main-content">
     <section class="hero shell" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="hero-kicker"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Агенство видеомонтажа / Постпродакшн</span></div>
+        <div class="hero-kicker"><span class="status-dot" aria-hidden="true"></span><span class="eyebrow">Агентство видеомонтажа / Постпродакшн</span></div>
         <h1 id="hero-title">Каждый кадр.<br><span>Имеет значение.</span></h1>
-        <p class="hero-desc">Привет! Мы - команда профессианальных видеомонтажёров и дизайнеров. Помогаем создавать видео которое будут смотреть.</p>
+        <p class="hero-desc">Привет! Мы - команда профессиональных видеомонтажёров и дизайнеров. Помогаем создавать видео, которое будут смотреть.</p>
         <div class="hero-actions"><a class="btn" href="#contact">Обсудить проект <span class="arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M5 19 19 5M5 5h14v14"/></svg></span></a><a class="subtle-link" href="#works">Смотреть проекты <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M12 4v16m-7-7 7 7 7-7"/></svg></a></div>
       </div>
       <div class="hero-art" role="img" aria-label="Абстрактная кинематографичная композиция в приглушённой зелёно-серой палитре">
@@ -107,7 +96,7 @@
       <div class="stats-heading section-head"><div><span class="eyebrow">01 / КОМАНДА</span><h2 id="numbers-heading">Наша команда<span class="period">.</span></h2></div><p>Объединяем монтаж, движение и звук. Работаем одной командой, чтобы каждый кадр складывался в цельную историю.</p></div>
       <dl class="stats-grid">
         <div class="stat"><dt>Монтажёры</dt><dd aria-label="11"><span data-count="11" aria-hidden="true">11</span></dd></div>
-        <div class="stat"><dt>Моушин-дизайнеры</dt><dd aria-label="05"><span data-count="5" aria-hidden="true">05</span></dd></div>
+        <div class="stat"><dt>Моушн-дизайнеры</dt><dd aria-label="05"><span data-count="5" aria-hidden="true">05</span></dd></div>
         <div class="stat"><dt>Саунд-дизайнеры</dt><dd aria-label="08"><span data-count="8" aria-hidden="true">08</span></dd></div>
       </dl>
     </section>
@@ -144,293 +133,13 @@
       <div class="workflow-head"><div><span class="eyebrow">04 / ПРОЦЕСС</span><h2 id="process-heading">Просто. Чётко. По делу<span class="period">.</span></h2></div><p>Понятная коммуникация и внимание к деталям на каждом этапе.</p></div>
       <div class="workflow-grid"><div class="step"><span class="step-number">01 / БРИФ</span><h3>Знакомимся с задачей</h3><p>Обсуждаем формат, референсы, исходники и результат, которого вы хотите достичь.</p></div><div class="step"><span class="step-number">02 / ПРОИЗВОДСТВО</span><h3>Собираем историю</h3><p>Работаем с монтажом, графикой, цветом и звуком. Согласовываем ключевые решения.</p></div><div class="step"><span class="step-number">03 / ФИНАЛ</span><h3>Доводим до идеала</h3><p>Учитываем обратную связь и подготавливаем ролик для нужных площадок.</p></div></div>
     </section>
-    <section class="contact" id="contact" aria-labelledby="contact-heading"><div class="contact-grid shell"><div class="contact-copy"><span class="eyebrow">05 / НАЧНЁМ РАЗГОВОР</span><h2 id="contact-heading">Есть идея?<br>Давайте<br><span class="period">воплотим.</span></h2><p>Расскажите, что хотите создать. Поможем превратить идею или готовые исходники в законченное видео.</p></div><form class="contact-form" id="brief-form" method="post" action="./api/brief"><div class="form-honeypot" aria-hidden="true"><label for="contact-website">Оставьте это поле пустым</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" spellcheck="false"></div><div class="form-caption"><strong>Короткий бриф</strong><span>ee. / 2026</span></div><label class="form-field"><span>КАК К ВАМ ОБРАЩАТЬСЯ</span><input name="name" type="text" placeholder="Ваше имя" maxlength="100"></label><label class="form-field"><span>КАК С ВАМИ СВЯЗАТЬСЯ</span><input name="contact" type="text" placeholder="Telegram или email" maxlength="160" required></label><label class="form-field"><span>ПАРА СЛОВ О ПРОЕКТЕ</span><textarea name="task" placeholder="Например: нужен монтаж ролика для бренда..." maxlength="2000" required></textarea></label><div class="form-consent"><input class="consent-checkbox" id="privacy-consent" name="privacy_consent" type="checkbox" value="accepted" required><label for="privacy-consent">Даю <a href="./consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</label></div><p class="consent-policy">Информация об обработке данных — в <a href="./privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p><button class="btn" type="submit" disabled aria-describedby="form-unavailable">Запланировать проект <span class="arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button><p class="form-result" id="form-unavailable" role="status">Форма пока недоступна. Если она не активируется, включите JavaScript и обновите страницу.</p><p class="form-result" id="form-result" role="status" aria-live="polite"></p><p class="form-note">Это рабочий макет формы: заявка копируется в буфер обмена. Отправку на почту или в Telegram подключим после добавления контактов студии.</p></form></div></section>
+    <section class="contact" id="contact" aria-labelledby="contact-heading"><div class="contact-grid shell"><div class="contact-copy"><span class="eyebrow">05 / НАЧНЁМ РАЗГОВОР</span><h2 id="contact-heading">Есть идея?<br>Давайте<br><span class="period">воплотим.</span></h2><p>Расскажите, что хотите создать. Поможем превратить идею или готовые исходники в законченное видео.</p></div><form class="contact-form" id="brief-form" method="post" action="./api/brief"><div class="form-honeypot" aria-hidden="true"><label for="contact-website">Оставьте это поле пустым</label><input id="contact-website" name="website" type="text" tabindex="-1" autocomplete="off" spellcheck="false"></div><div class="form-caption"><strong>Короткий бриф</strong><span>ee. / 2026</span></div><label class="form-field"><span>КАК К ВАМ ОБРАЩАТЬСЯ</span><input name="name" autocomplete="name" type="text" placeholder="Ваше имя" maxlength="100"></label><label class="form-field"><span>КАК С ВАМИ СВЯЗАТЬСЯ</span><input name="contact" type="text" placeholder="Telegram или email" maxlength="160" required></label><label class="form-field"><span>ПАРА СЛОВ О ПРОЕКТЕ</span><textarea name="task" placeholder="Например: нужен монтаж ролика для бренда..." maxlength="2000" required></textarea></label><div class="form-consent"><input class="consent-checkbox" id="privacy-consent" name="privacy_consent" type="checkbox" value="accepted" required><label for="privacy-consent">Даю <a href="./consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a>.</label></div><p class="consent-policy">Информация об обработке данных — в <a href="./privacy.html" target="_blank" rel="noopener">политике конфиденциальности</a>.</p><button class="btn" type="submit" disabled aria-describedby="form-unavailable">Запланировать проект <span class="arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M5 19 19 5M5 5h14v14"/></svg></span></button><p class="form-result" id="form-unavailable" role="status">Форма пока недоступна. Включите JavaScript и обновите страницу или напишите нам в Telegram по ссылке ниже.</p><p class="form-result" id="form-result" role="status" aria-live="polite"></p><p class="form-note">Оставьте заявку — свяжемся с вами, чтобы обсудить проект.</p><p class="form-note">Можно написать напрямую: <a href="https://t.me/baba4kih" target="_blank" rel="noopener noreferrer">Telegram @baba4kih</a>.</p></form></div></section>
   </main>
-  <footer class="site-footer shell"><a class="footer-logo" href="#top">ee.</a><span class="footer-small">© 2026 EE. · АГЕНСТВО ВИДЕОМОНТАЖА</span><a class="footer-top" href="#top">Наверх <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M12 20V4m-7 7 7-7 7 7"/></svg></a></footer>
+  <footer class="site-footer shell"><a class="footer-logo" href="#top">ee.</a><span class="footer-small">© 2026 EE. · АГЕНТСТВО ВИДЕОМОНТАЖА</span><a class="footer-top" href="#top">Наверх <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" style="vertical-align:-.125em;flex-shrink:0"><path d="M12 20V4m-7 7 7-7 7 7"/></svg></a></footer>
   <dialog id="project-dialog" class="modal" aria-labelledby="dialog-title"><div class="modal-inner"><div class="modal-head"><strong>ee. / ПРОЕКТ</strong><button type="button" class="modal-close" data-close-modal aria-label="Закрыть окно">×</button></div><div class="modal-video"><iframe id="dialog-video" title="Видео проекта ee." allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><h3 id="dialog-title">Название проекта</h3><p id="dialog-copy">Демонстрационный проект.</p></div></dialog>
   <script src="./form-config.js"></script>
   <script src="./form.js"></script>
-  <script>
-    (function(){
-      const themeToggle=document.querySelector('.theme-toggle');
-      const themeRoot=document.documentElement;
-      let themeBusy=false;
-      function applyTheme(dark){
-        themeRoot.dataset.theme=dark?'dark':'light';
-        themeToggle.setAttribute('aria-checked',String(dark));
-        document.querySelector('meta[name="theme-color"]').content=dark?'#111113':'#fbfcfa';
-        document.querySelector('meta[name="color-scheme"]').content=dark?'dark':'light';
-        try{localStorage.setItem('edit-effects-theme',dark?'dark':'light');}catch(error){}
-      }
-      themeToggle.setAttribute('aria-checked',String(themeRoot.dataset.theme==='dark'));
-      themeToggle.addEventListener('click',async()=>{
-        if(themeBusy)return;
-        const dark=themeRoot.dataset.theme!=='dark';
-        if(!document.startViewTransition||window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-          applyTheme(dark);
-          return;
-        }
-        themeBusy=true;
-        themeRoot.classList.add('theme-switching');
-        let transition;
-        try{
-          transition=document.startViewTransition(()=>applyTheme(dark));
-          await transition.ready;
-          // Sample a gently irregular edge; fresh phases make every wave unique.
-          // Fixed polygon vertices let the browser interpolate without sharp jumps.
-          const phaseA=Math.random()*Math.PI*2;
-          const phaseB=Math.random()*Math.PI*2;
-          const amplitude=4+Math.random()*2;
-          const frequency=1.1+Math.random()*.6;
-          const drift=(Math.random()-.5)*1.2;
-          const waveFrames=Array.from({length:17},(_,frame)=>{
-            const progress=frame/16;
-            const edge=Array.from({length:49},(_,point)=>{
-              const x=1-point/48;
-              const ripple=amplitude*Math.sin(x*Math.PI*2*frequency+phaseA+progress*drift)
-                +1.5*Math.sin(x*Math.PI*4+phaseB-progress*.8);
-              const y=-12+124*progress+ripple;
-              return (x*100).toFixed(3)+'% '+y.toFixed(3)+'%';
-            });
-            return {offset:progress,clipPath:'polygon(0% -25%,100% -25%,'+edge.join(',')+')'};
-          });
-          const reveal=themeRoot.animate(
-            waveFrames,
-            {duration:1050+Math.random()*150,easing:'cubic-bezier(.22,.61,.36,1)',pseudoElement:'::view-transition-new(root)'}
-          );
-          await reveal.finished;
-          await transition.finished;
-        }catch(error){
-          if(transition)transition.skipTransition();
-          applyTheme(dark);
-        }finally{
-          themeRoot.classList.remove('theme-switching');
-          themeBusy=false;
-        }
-      });
-      const numbersSection=document.getElementById('numbers');
-      const counters=Array.from(numbersSection.querySelectorAll('[data-count]'));
-      const counterMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
-      let counterFrame=0,countersStarted=false;
-      const showFinalCounts=()=>counters.forEach(counter=>{
-        counter.textContent=counter.dataset.count.padStart(2,'0');
-      });
-      function animateCounters(){
-        if(countersStarted)return;
-        countersStarted=true;
-        if(counterMotion.matches){showFinalCounts();return;}
-        const start=performance.now();
-        function count(time){
-          const progress=Math.min((time-start)/1400,1);
-          counters.forEach(counter=>{
-            counter.textContent=String(Math.floor(Number(counter.dataset.count)*progress)).padStart(2,'0');
-          });
-          if(progress<1)counterFrame=requestAnimationFrame(count);
-          else{counterFrame=0;showFinalCounts();}
-        }
-        counterFrame=requestAnimationFrame(count);
-      }
-      if('IntersectionObserver' in window&&!counterMotion.matches){
-        counters.forEach(counter=>counter.textContent='00');
-        const counterObserver=new IntersectionObserver(entries=>{
-          if(entries.some(entry=>entry.isIntersecting)){
-            animateCounters();
-            counterObserver.disconnect();
-          }
-        },{threshold:.35});
-        counterObserver.observe(numbersSection);
-        counterMotion.addEventListener('change',()=>{
-          if(counterMotion.matches){
-            cancelAnimationFrame(counterFrame);
-            counterObserver.disconnect();
-            countersStarted=true;
-            showFinalCounts();
-          }
-        });
-      }
-      const header=document.querySelector('.site-header');
-      const menu=document.querySelector('.menu-toggle');
-      menu.addEventListener('click',()=>{const opened=header.classList.toggle('menu-open');menu.setAttribute('aria-expanded',String(opened));menu.setAttribute('aria-label',opened?'Закрыть меню':'Открыть меню');});
-      document.querySelectorAll('#site-nav a').forEach(a=>a.addEventListener('click',()=>{header.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.setAttribute('aria-label','Открыть меню');}));
-      // Keep details open until the closing animation finishes.
-      const services=Array.from(document.querySelectorAll('.service')).map(element=>({
-        element,summary:element.querySelector('summary'),expanded:element.open,animation:null
-      }));
-      function setService(state,expanded){
-        const {element,summary}=state;
-        const startHeight=element.getBoundingClientRect().height;
-        if(state.animation){state.animation.cancel();state.animation=null;}
-        state.expanded=expanded;
-        summary.setAttribute('aria-expanded',String(expanded));
-        element.open=true;
-        element.style.height='';
-        const endHeight=expanded?element.getBoundingClientRect().height:
-          summary.getBoundingClientRect().height+parseFloat(getComputedStyle(element).borderBottomWidth);
-        const finish=()=>{
-          element.open=state.expanded;
-          element.style.height='';
-          element.style.overflow='';
-          state.animation=null;
-        };
-        if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||!element.animate){
-          finish();
-          return;
-        }
-        element.style.overflow='hidden';
-        const animation=element.animate(
-          [{height:startHeight+'px'},{height:endHeight+'px'}],
-          {duration:280,easing:'cubic-bezier(0.4, 0, 0.2, 1)'}
-        );
-        state.animation=animation;
-        animation.onfinish=finish;
-      }
-      services.forEach(state=>{
-        state.summary.setAttribute('aria-expanded',String(state.expanded));
-        state.summary.addEventListener('click',event=>{
-          event.preventDefault();
-          const expanded=!state.expanded;
-          if(expanded)services.forEach(other=>{
-            if(other!==state&&other.expanded)setService(other,false);
-          });
-          setService(state,expanded);
-        });
-      });
-      const projects=[
-        {name:'Form in Motion',poster:'poster-one',text:'Бренд-фильм · Монтаж. Демонстрационный визуальный концепт. Здесь появится реальный ролик студии с описанием задачи, решения и результата.'},
-        {name:'Silent Geometry',poster:'poster-two',text:'Имиджевое видео · Цвет. Демонстрационный визуальный концепт. Заменим на ваш кейс с видеоплеером, кадрами и краткой историей проекта.'},
-        {name:'Object / 03',poster:'poster-three',text:'Рекламное видео · Графика. Демонстрационный визуальный концепт. В дальнейшем подключим настоящую работу и детали производства.'},
-        {name:'Light Waves',poster:'poster-four',text:'Motion-дизайн · Анимация. Демонстрационный концепт: свет, пластика и движение абстрактных форм.'},
-        {name:'Echo Studio',poster:'poster-five',text:'Звук · Саунд-дизайн. Демонстрационный концепт: визуальный ритм, звуковая атмосфера и выразительные акценты.'}
-      ];
-      const dialog=document.getElementById('project-dialog');
-      const projectVideo=document.getElementById('dialog-video');
-      dialog.addEventListener('close',()=>projectVideo.removeAttribute('src'));
-      const carousel=document.querySelector('.portfolio-carousel');
-      const portfolioLocked=Boolean(carousel.closest('[inert]'));
-      const viewport=carousel.querySelector('.carousel-viewport');
-      const track=carousel.querySelector('.projects');
-      const originals=Array.from(track.children);
-      // Three identical sets allow seamless movement in either direction.
-      function cloneSet(){
-        return originals.map(card=>{
-          const copy=card.cloneNode(true);
-          copy.setAttribute('aria-hidden','true');
-          copy.querySelectorAll('button').forEach(button=>button.tabIndex=-1);
-          return copy;
-        });
-      }
-      track.prepend(...cloneSet());
-      track.append(...cloneSet());
-      const motion=window.matchMedia('(prefers-reduced-motion: reduce)');
-      let cycle=0,step=0,position=0,hovered=false,paused=motion.matches;
-      let dragging=null,suppressClick=false,tween=null,previousTime=0,visible=true,speed=0;
-      function render(){
-        if(!cycle)return;
-        const offset=cycle+((position%cycle)+cycle)%cycle;
-        track.style.transform='translate3d('+(-offset)+'px,0,0)';
-      }
-      function measure(){
-        const oldStep=step;
-        step=originals[1].getBoundingClientRect().left-originals[0].getBoundingClientRect().left;
-        cycle=step*originals.length;
-        if(oldStep)position=position/oldStep*step;
-        tween=null;
-        render();
-      }
-      measure();
-      new ResizeObserver(measure).observe(viewport);
-      new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;previousTime=0;speed=0;}).observe(viewport);
-      document.addEventListener('visibilitychange',()=>{previousTime=0;speed=0;});
-      motion.addEventListener('change',()=>{paused=motion.matches;tween=null;});
-      viewport.addEventListener('pointerenter',event=>{if(!portfolioLocked&&event.pointerType==='mouse')hovered=true;});
-      viewport.addEventListener('pointerleave',()=>{hovered=false;});
-      viewport.addEventListener('focusin',event=>{
-        // Focus can cause native scrolling; keep transform as the sole position source.
-        viewport.scrollLeft=0;
-        if(!event.target.matches(':focus-visible'))return;
-        const index=originals.findIndex(card=>card.contains(event.target));
-        if(index<0)return;
-        position=index*step;
-        tween=null;speed=0;
-        render();
-      });
-      function move(direction){
-        if(portfolioLocked)return;
-        const target=position+direction*step;
-        if(motion.matches){position=target;render();return;}
-        tween={from:position,to:target,start:performance.now()};
-      }
-      viewport.addEventListener('keydown',event=>{
-        if(event.key==='ArrowLeft'||event.key==='ArrowRight'){
-          event.preventDefault();move(event.key==='ArrowLeft'?-1:1);
-        }
-      });
-      viewport.addEventListener('pointerdown',event=>{
-        if(portfolioLocked)return;
-        if(!event.isPrimary||event.button!==0)return;
-        tween=null;suppressClick=false;speed=0;
-        dragging={id:event.pointerId,x:event.clientX,y:event.clientY,start:position,moved:false};
-      });
-      viewport.addEventListener('pointermove',event=>{
-        if(!dragging||dragging.id!==event.pointerId)return;
-        const dx=event.clientX-dragging.x,dy=event.clientY-dragging.y;
-        if(!dragging.moved){
-          if(Math.abs(dx)<6)return;
-          if(event.pointerType!=='mouse'&&Math.abs(dy)>Math.abs(dx))return;
-          dragging.moved=true;
-          viewport.setPointerCapture(event.pointerId);
-          viewport.classList.add('is-dragging');
-        }
-        position=dragging.start-dx;
-        render();
-      });
-      function endDrag(event){
-        if(!dragging||dragging.id!==event.pointerId)return;
-        suppressClick=dragging.moved;
-        dragging=null;
-        viewport.classList.remove('is-dragging');
-        if(viewport.hasPointerCapture(event.pointerId))viewport.releasePointerCapture(event.pointerId);
-      }
-      window.addEventListener('pointerup',endDrag);
-      window.addEventListener('pointercancel',endDrag);
-      viewport.addEventListener('lostpointercapture',event=>{
-        // A child's implicit touch capture can be transferred to this viewport.
-        // Only losing the viewport's own capture should finish the drag.
-        if(event.target===viewport)endDrag(event);
-      });
-      viewport.addEventListener('dragstart',event=>event.preventDefault());
-      viewport.addEventListener('click',event=>{
-        if(suppressClick&&event.detail!==0){
-          event.preventDefault();event.stopImmediatePropagation();suppressClick=false;
-        }
-      },true);
-      function tick(time){
-        const dt=previousTime?Math.min(time-previousTime,50):0;
-        previousTime=time;
-        if(!document.hidden&&visible&&!dragging){
-          if(tween){
-            speed=0;
-            const progress=Math.min((time-tween.start)/450,1);
-            const eased=1-Math.pow(1-progress,3);
-            position=tween.from+(tween.to-tween.from)*eased;
-            if(progress===1)tween=null;
-            render();
-          }else if(!paused&&!hovered&&!dialog.open&&!carousel.querySelector(':focus-visible')){
-            // Ease back into the same 18px/s cruise speed after interaction.
-            const decay=Math.exp(-dt/220);
-            position+=0.018*dt+(speed-0.018)*220*(1-decay);
-            speed=0.018+(speed-0.018)*decay;
-            render();
-          }else{speed=0;}
-        }else{speed=0;}
-        requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-      document.querySelectorAll('[data-project]').forEach(button=>button.addEventListener('click',()=>{if(portfolioLocked)return;const p=projects[Number(button.dataset.project)];document.getElementById('dialog-title').textContent=p.name;document.getElementById('dialog-copy').textContent=p.text;if(typeof dialog.showModal==='function'){projectVideo.title='Видео проекта: '+p.name;projectVideo.src='https://www.youtube-nocookie.com/embed/_m_GXZoaU3c?rel=0';dialog.showModal();}}));
-      document.querySelector('[data-close-modal]').addEventListener('click',()=>dialog.close());
-      dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
-    })();
-  </script>
+  <script src="/site-2.js"></script>
 </body>
 </html>
 
