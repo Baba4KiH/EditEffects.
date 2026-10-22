@@ -1,4 +1,5 @@
 import { readFile } from 'node:fs/promises';
+import { telegramCall, TelegramError } from './telegram.mjs';
 
 const publicFiles = new Map([
   ['/', ['index.html', 'text/html']], ['/index.html', ['index.html', 'text/html']],
@@ -25,6 +26,8 @@ async function readJson(request) {
 }
 
 export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = fetch, now = Date.now } = {}) {
+  token = String(token || '').trim();
+  chatId = String(chatId || '').trim();
   const attempts = new Map();
   return async function handle(request, ip = 'unknown') {
     const pathname = new URL(request.url).pathname;
@@ -53,7 +56,7 @@ export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = 
       return new Response(null, { status: 204, headers });
     }
     if (request.method !== 'POST') return json(405, { error: 'Используйте POST.' });
-    if (!token || !chatId) return json(503, { error: 'Отправка пока не настроена.' });
+    if (!token || !chatId) return json(503, { code: 'TELEGRAM_NOT_CONFIGURED', error: 'Отправка пока не настроена. Заполните TELEGRAM_BOT_TOKEN и TELEGRAM_CHAT_ID в .env и перезапустите сервер.' });
     if (request.headers.get('content-type')?.split(';')[0].trim() !== 'application/json') return json(415, { error: 'Нужен формат JSON.' });
     const time = now();
     for (const [key, value] of attempts) if (value.expires <= time) attempts.delete(key);
@@ -80,17 +83,15 @@ export function createHandler({ token, chatId, allowedOrigins = [], fetchImpl = 
       'Контакт: ' + data.contact.trim(), 'Проект: ' + data.task.trim(), '',
       'Согласие: подтверждено (галочка формы)', 'Получено: ' + new Date(time).toISOString()].join('\n');
     try {
-      const response = await fetchImpl('https://api.telegram.org/bot' + token + '/sendMessage', {
-        method: 'POST', headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text, link_preview_options: { is_disabled: true } }),
-        signal: AbortSignal.timeout(10000),
-      });
-      const telegram = await response.json();
-      if (!response.ok || telegram.ok !== true || !Number.isInteger(telegram.result?.message_id)) throw Error('Telegram rejected request');
+      await telegramCall({ token, method: 'sendMessage', fetchImpl, payload: {
+        chat_id: chatId, text, link_preview_options: { is_disabled: true },
+      } });
       return json(200, { ok: true });
-    } catch {
-      // Never return/log Telegram URLs or errors: they may contain the bot token.
+    } catch (error) {
+      // Fixed, safe messages only, never Telegram's raw response or URL.
+      if (error instanceof TelegramError) return json(502, { code: error.code, error: error.message });
       return json(502, { error: 'Не удалось подтвердить отправку. Попробуйте позже.' });
     }
   };
 }
+

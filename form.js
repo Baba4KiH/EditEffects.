@@ -51,14 +51,15 @@
         });
         const answer = await response.json();
         if (!response.ok || answer.ok !== true) {
-          result.textContent = answer.error || 'Не удалось подтвердить отправку. Попробуйте позже.';
+          const code = typeof answer.code === 'string' && /^TELEGRAM_[A-Z_]+$/.test(answer.code) ? ' [' + answer.code + ']' : '';
+          result.textContent = (answer.error || 'Не удалось подтвердить отправку. Попробуйте позже.') + code;
           return;
         }
         result.textContent = 'Заявка отправлена. Скоро свяжемся с вами.';
       }
     } catch {
       result.textContent = endpoint
-        ? 'Не удалось подтвердить отправку. Проверьте соединение и попробуйте позже.'
+        ? 'Не удалось получить ответ сервера формы. Проверьте, что npm start запущен и страница открыта по адресу этого сервера. Доставка не подтверждена; перед повтором проверьте чат.'
         : 'Не удалось скопировать заявку. Попробуйте ещё раз.';
     } finally {
       button.innerHTML = label;
@@ -67,3 +68,4 @@
     }
   });
 })();
+

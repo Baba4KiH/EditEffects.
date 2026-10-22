@@ -64,6 +64,13 @@ test('delivery errors show failure and restore the submit button', async () => {
   }
 });
 
+test('safe Telegram diagnostic code reaches the form and leaves it available for retry', async () => {
+  const app = mount({ status: 502, response: { code: 'TELEGRAM_CHAT_NOT_FOUND', error: 'Telegram не нашёл чат.' } });
+  await app.submit();
+  assert.match(app.result.textContent, /TELEGRAM_CHAT_NOT_FOUND/);
+  assert.equal(app.button.disabled, false);
+});
+
 test('double submit is blocked until the first request finishes', async () => {
   let resolveResponse, calls = 0;
   const app = mount({ fetchImpl: () => { calls++; return new Promise(resolve => { resolveResponse = resolve; }); } });
@@ -89,3 +96,4 @@ test('form and real backend agree on the full delivery contract', async () => {
   assert.match(message.text, /Тест/);
   assert.match(message.text, /@test/);
 });
+
