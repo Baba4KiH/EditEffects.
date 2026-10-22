@@ -7,7 +7,8 @@ import { createHandler } from '../server/handler.mjs';
 const source = await readFile(new URL('../form.js', import.meta.url), 'utf8');
 function mount({ endpoint = '/api/brief', response = { ok: true }, status = 200, trap = '', valid = true, fetchImpl } = {}) {
   const values = { name: 'Тест', contact: '@test', task: 'Ролик', website: trap };
-  const result = { textContent: '' }, button = { disabled: false, innerHTML: 'Запланировать проект' }, note = { textContent: '' };
+  const result = { textContent: '' }, button = { disabled: true, innerHTML: 'Запланировать проект', removeAttribute() {} }, note = { textContent: '' };
+  const unavailable = { hidden: false };
   const handlers = {}, requests = [], copies = [];
   const form = {
     elements: { namedItem: key => ({ value: values[key], checked: key === 'privacy_consent' }) },
@@ -16,13 +17,13 @@ function mount({ endpoint = '/api/brief', response = { ok: true }, status = 200,
   };
   class FakeFormData { get(key) { return values[key]; } }
   vm.runInNewContext(source, {
-    document: { getElementById: id => id === 'brief-form' ? form : result },
+    document: { getElementById: id => id === 'brief-form' ? form : id === 'form-unavailable' ? unavailable : result },
     window: { EE_FORM_CONFIG: { endpoint } }, FormData: FakeFormData,
     navigator: { clipboard: { writeText: async text => copies.push(text) } },
     fetch: fetchImpl || (async (url, options) => { requests.push({ url, payload: JSON.parse(options.body) }); return { ok: status >= 200 && status < 300, json: async () => response }; }),
     AbortSignal,
   });
-  return { submit: () => handlers.submit?.({ preventDefault() {} }), result, button, requests, copies };
+  return { submit: () => handlers.submit?.({ preventDefault() {} }), result, button, unavailable, requests, copies };
 }
 
 test('configured form sends JSON and waits for confirmed success', async () => {
@@ -97,3 +98,15 @@ test('form and real backend agree on the full delivery contract', async () => {
   assert.match(message.text, /@test/);
 });
 
+
+test('form starts locked with POST fallback and enables only after initialization', async () => {
+  const html = await readFile(new URL('../index.html', import.meta.url), 'utf8');
+  const form = html.match(/<form\b[^>]*id="brief-form"[^>]*>([\s\S]*?)<\/form>/)[0];
+  assert.match(form, /method="post"/);
+  assert.match(form, /action="\.\/api\/brief"/);
+  assert.match(form, /<button[^>]*type="submit"[^>]*\bdisabled\b/);
+  assert.match(form, /id="form-unavailable"/);
+  const app = mount();
+  assert.equal(app.button.disabled, false);
+  assert.equal(app.unavailable.hidden, true);
+});

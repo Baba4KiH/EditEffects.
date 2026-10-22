@@ -67,5 +67,10 @@
       form.setAttribute('aria-busy', 'false');
     }
   });
+
+  // Enable submission only after its handler has been installed successfully.
+  document.getElementById('form-unavailable').hidden = true;
+  button.removeAttribute('aria-describedby');
+  button.disabled = false;
 })();
 
