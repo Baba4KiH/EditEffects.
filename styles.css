@@ -14,7 +14,7 @@
     .brand{display:flex;align-items:center;gap:13px;flex-shrink:0}
     .brand-icon{width:35px;height:30px;display:flex;flex-direction:column;justify-content:center;gap:5px;transform:translateY(1px)}
     .brand-icon i{display:block;width:34px;height:5px;background:var(--ink)}.brand-icon i:nth-child(2){width:21px}
-    .brand-text{display:block;font-size:17px;line-height:.91;letter-spacing:-.075em;font-weight:800}.brand-text span{display:block}
+    .brand-text{display:block;font-size:17px;line-height:.91;letter-spacing:-.075em;font-weight:800}.brand-text span{display:inline}
     .nav{display:flex;align-items:center;gap:clamp(24px,3.2vw,48px)}
     .nav a{font-size:12px;font-weight:700;transition:color .2s}.nav a:hover{color:var(--sage-deep)}
     .nav a.nav-cta{display:inline-flex;gap:22px;align-items:center;border-left:1px solid var(--line);padding-left:30px}
