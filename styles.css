@@ -200,3 +200,5 @@
     .form-consent label{min-width:0;min-height:44px;font-size:12px;line-height:1.7;color:var(--muted);cursor:pointer;overflow-wrap:anywhere}
     .form-consent a,.consent-policy a{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
     .consent-policy{margin:0 0 20px 32px;font-size:11px;line-height:1.7;color:var(--muted);overflow-wrap:anywhere}
+
+    .form-honeypot{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;pointer-events:none}
