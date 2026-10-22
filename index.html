@@ -327,7 +327,11 @@
       }
       window.addEventListener('pointerup',endDrag);
       window.addEventListener('pointercancel',endDrag);
-      viewport.addEventListener('lostpointercapture',endDrag);
+      viewport.addEventListener('lostpointercapture',event=>{
+        // A child's implicit touch capture can be transferred to this viewport.
+        // Only losing the viewport's own capture should finish the drag.
+        if(event.target===viewport)endDrag(event);
+      });
       viewport.addEventListener('dragstart',event=>event.preventDefault());
       viewport.addEventListener('click',event=>{
         if(suppressClick&&event.detail!==0){
