@@ -3,6 +3,7 @@ import { telegramCall, TelegramError } from './telegram.mjs';
 
 const publicFiles = new Map([
   ['/', ['index.html', 'text/html']], ['/index.html', ['index.html', 'text/html']],
+  ['/favicon.svg', ['favicon.svg', 'image/svg+xml']], ['/favicon.ico', ['favicon.ico', 'image/x-icon']],
   ['/styles.css', ['styles.css', 'text/css']], ['/form.js', ['form.js', 'text/javascript']],
   ['/consent.html', ['consent.html', 'text/html']], ['/privacy.html', ['privacy.html', 'text/html']],
 ]);
