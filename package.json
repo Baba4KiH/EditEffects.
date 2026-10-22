@@ -1,0 +1,13 @@
+{
+  "name": "ee-project-requests",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/index.mjs",
+    "telegram:check": "node --env-file-if-exists=.env server/check-telegram.mjs",
+    "telegram:test": "node --env-file-if-exists=.env server/check-telegram.mjs --send-test",
+    "test": "node --test"
+  }
+}
+

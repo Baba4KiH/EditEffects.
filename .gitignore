@@ -1,0 +1,14 @@
+.env
+.env.*
+!.env.example
+node_modules/
+
+# Local diagnostics, editor files and generated output.
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+coverage/
+_site/
+.jekyll-cache/
