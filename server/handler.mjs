@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises';
 import { telegramCall, TelegramError } from './telegram.mjs';
 
 const publicFiles = new Map([
+  ['/og-image.png', ['og-image.png', 'image/png']],
+  ['/sitemap.xml', ['sitemap.xml', 'application/xml']],
   ['/', ['index.html', 'text/html']], ['/index.html', ['index.html', 'text/html']],
   ['/favicon.svg', ['favicon.svg', 'image/svg+xml']], ['/favicon.ico', ['favicon.ico', 'image/x-icon']],
   ['/styles.css', ['styles.css', 'text/css']], ['/form.js', ['form.js', 'text/javascript']],
